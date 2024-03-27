@@ -5,7 +5,87 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <main class="page-load">
+      <h1>Welcome back</h1>
+      <h1> ${user} </h1>
+      <h1> ... </h1>
+    </main>
+    <section class="after-load-side-bar hidden">
+      <h2>Whats Cookin</h2>
+      <button class="tags" type="button">Tags</button>
+      <button class="search" type="button">Search</button>
+      <button class="favs" type="button">Favs</button>
+    </section>
+    <section class="tag-view-side-bar hidden">
+      <ul>
+        <li>
+          <a href="url">tag</a>
+        </li>
+        <li>
+          <a href="url">tag</a>
+        </li>
+        <li>
+          <a href="url">tag</a>
+        </li>
+        <li>
+          <a href="url">tag</a>
+        </li>
+        <li>
+          <a href="url">tag</a>
+        </li>
+        <li>
+          <a href="url">tag</a>
+        </li>
+      </ul>
+      <button class="tag-view-search" type="button">Search</button>
+      <div class="search hidden">
+        <label for="recipe-search">Quick Search</label>
+        <input type="search" id="site-search" name="q" />
+        <button>Search</button>
+      </div>
+    </section>
+    <article class="after-load-main-view hidden" >
+      <img src="" alt="food-stock-photo">
+    </article>
+    <article class="after-tag-search hidden">
+      <div>
+        <img src="" alt="">
+        <p>Recipe Name</p>
+      </div>
+      <div>
+        <img src="" alt="">
+        <p>Recipe Name</p>
+      </div>
+      <div>
+        <img src="" alt="">
+        <p>Recipe Name</p>
+      </div>
+      <div>
+        <img src="" alt="">
+        <p>Recipe Name</p>
+      </div>
+    </article>
+    <article class="recipe-view hidden">
+      <h1>Recipe Name</h1>
+      <img src="" alt="recipe-photo">
+      <div>
+      <h2>Ingredients</h2>
+      <ul>
+        <li>ingredient</li>
+        <li>ingredient</li>
+        <li>ingredient</li>
+      </ul>
+      </div>
+      <div>
+        <h2>Directions</h2>
+        <ol>
+          <li>direction</li>
+          <li>direction</li>
+          <li>direction</li>
+          <li>direction</li>
+        </ol>
+      </div>
+    </article>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
