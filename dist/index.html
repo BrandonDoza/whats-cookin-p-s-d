@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Whats Cookin</title>
   </head>
   <body>
-    <main class="page-load">
+    <main class="page-load hidden">
       <h1>Welcome back</h1>
-      <h1> ${user} </h1>
-      <h1> ... </h1>
+      <h1>${user}</h1>
+      <h1>...</h1>
     </main>
     <section class="after-load-side-bar hidden">
-      <h2>Whats Cookin</h2>
-      <button class="tags" type="button">Tags</button>
-      <button class="search" type="button">Search</button>
-      <button class="favs" type="button">Favs</button>
+      <section class="main-after-page-load">
+        <div class="side-heading">What's Cookin'</div>
+        <section class="side-bar">
+          <button class="side-buttons" type="button">Tags</button>
+          <button class="side-buttons" type="button">Search</button>
+          <button class="side-buttons" type="button">Favs</button>
+        </section>
+      </section>
+      <article class="after-load-main-view">
+        <img src="" alt="food-stock-photo" />
+      </article>
     </section>
     <section class="tag-view-side-bar hidden">
       <ul>
@@ -44,37 +51,34 @@
         <button>Search</button>
       </div>
     </section>
-    <article class="after-load-main-view hidden" >
-      <img src="" alt="food-stock-photo">
-    </article>
     <article class="after-tag-search hidden">
       <div>
-        <img src="" alt="">
+        <img src="" alt="" />
         <p>Recipe Name</p>
       </div>
       <div>
-        <img src="" alt="">
+        <img src="" alt="" />
         <p>Recipe Name</p>
       </div>
       <div>
-        <img src="" alt="">
+        <img src="" alt="" />
         <p>Recipe Name</p>
       </div>
       <div>
-        <img src="" alt="">
+        <img src="" alt="" />
         <p>Recipe Name</p>
       </div>
     </article>
     <article class="recipe-view hidden">
       <h1>Recipe Name</h1>
-      <img src="" alt="recipe-photo">
+      <img src="" alt="recipe-photo" />
       <div>
-      <h2>Ingredients</h2>
-      <ul>
-        <li>ingredient</li>
-        <li>ingredient</li>
-        <li>ingredient</li>
-      </ul>
+        <h2>Ingredients</h2>
+        <ul>
+          <li>ingredient</li>
+          <li>ingredient</li>
+          <li>ingredient</li>
+        </ul>
       </div>
       <div>
         <h2>Directions</h2>
