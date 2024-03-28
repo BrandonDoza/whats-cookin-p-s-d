@@ -23,3 +23,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.side-buttons {
+  background-color: var(--coral-buttons);
+  color: var(--liver-containers);
+  font-size: large;
+  font-weight: 800;
+  width: 50%;
+  height: 50px;
+  border-radius: 25px;
+  margin: 30px;
+}
