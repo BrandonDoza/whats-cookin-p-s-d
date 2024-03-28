@@ -1,15 +1,13 @@
 :root {
-  --primary-color: #EEF4D4;
-  --secondary-color: #DAEFB3;
-  --coral-buttons: #EA9E8D;
+  --primary-color: #eef4d4;
+  --secondary-color: #daefb3;
+  --coral-buttons: #ea9e8d;
   --liver-containers: #725752;
   --header-text: #1c2826;
 }
 
-
-
 body {
-  font-family: 'Helvetica', sans-serif;
+  font-family: "Helvetica", sans-serif;
   background-color: var(--primary-color);
   margin: 0;
 }
@@ -18,41 +16,45 @@ body {
   height: 100vh;
   background-color: var(--primary-color);
   color: var(--header-text);
+  font-size: xx-large;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.after-load-side-bar {
+.main {
   display: flex;
-  flex-direction: row;
 }
 
 .main-after-page-load {
-  width: 30%
+  width: 30%;
 }
 
 .side-bar {
   background-color: var(--secondary-color);
-  width: 100%;
-  height: 100vh;
+  width: 30%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
 }
 
-.side-heading {
+.side-bar-heading {
   background-color: var(--liver-containers);
-  color:var(--coral-buttons);
-  font-size:x-large;
+  color: var(--coral-buttons);
+  font-size: xx-large;
   font-weight: 800;
-  height: 25vh;
-  width: 100%;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.after-load-side-bar-display {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .after-load-main-view {
@@ -61,7 +63,7 @@ body {
   height: 100vh;
 }
 
-.tags, .search, .favs {
+.buttons {
   background-color: var(--coral-buttons);
   color: var(--liver-containers);
   font-size: large;
@@ -69,12 +71,52 @@ body {
   width: 50%;
   height: 50px;
   border-radius: 25px;
-  margin: 30px;
+  margin: 25px;
 }
 
-.tag-view-side-bar {
+.after-tag-click-sidebar-display {
   background-color: var(--secondary-color);
-  border: 2px solid black;
+  height: 500px;
+}
+
+.tags-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 20px;
+  overflow-y: auto;
+  max-height: 250px;
+  height: 30%;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  color: var(--coral-buttons);
+}
+
+li {
+  color: var(--coral-buttons);
+}
+
+.tags-section li {
+  text-align: center;
+}
+
+.quick-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.search-input {
+  width: 75%;
+  height: 50px;
+  border-radius: 25px;
+  margin: 10%;
 }
 
 .tag-view-search {
@@ -82,20 +124,64 @@ body {
   color: #725752;
 }
 
-.after-tag-search {
-background-color: var(--secondary-color);
-border: 2px solid black;
-width: 100%;
-  height: 100vh;
+.recipes-display {
+  background-color: var(--primary-color);
+  width: 70%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
+}
+
+.after-tag-search-view {
+  background-color: var(--secondary-color);
+  color: var(--coral-buttons);
+  width: 75%;
+  height: 80%;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  overflow-y: auto;
+  max-height: 800px;
 }
 
 .recipe-view {
-background-color: var(--primary-color);
-border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+.recipe-name {
+  color: var(--header-text);
+  font-size: xx-large;
+  text-align: center;
+  margin: 30px;
+}
+
+.ingredients-label,
+.directions-label {
+  text-align: center;
+  margin-top: 0;
+}
+
+.lists-display {
+  background-color: var(--liver-containers);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  max-height: 300px;
+  border-radius: 25px;
+  padding: 0;
+  width: 100%;
+}
+
+.recipe-image {
+  height: 150px;
+  width: 100%;
 }
 
 .hidden {

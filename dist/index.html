@@ -5,64 +5,122 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <main class="page-load hidden">
+    <section class="page-load">
       <h1>Welcome back</h1>
       <h1>${user}</h1>
       <h1>...</h1>
-    </main>
-    <section class="after-load-side-bar">
-      <section class="main-after-page-load">
-        <section class="side-bar">
-          <div class="side-heading">What's Cookin'</div>
-          <button class="tags" type="button">Tags</button>
-          <button class="search" type="button">Search</button>
-          <button class="favs" type="button">Favs</button>
-        </section>
-      <article class="after-tag-search hidden">
-        <div class="side-heading">What's Cookin'</div>
-        <div>
-          <img src="" alt="" />
-          <p>Recipe Name</p>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <p>Recipe Name</p>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <p>Recipe Name</p>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <p>Recipe Name</p>
-        </div>
-      </article>
-      <article class="after-load-main-view">
-        <img src="" alt="food-stock-photo" />
-      </article>
     </section>
-    <article class="recipe-view">
-      <h1>Recipe Name</h1>
-      <img src="" alt="recipe-photo" />
-      <div>
-        <h2>Ingredients</h2>
-        <ul>
-          <li>ingredient</li>
-          <li>ingredient</li>
-          <li>ingredient</li>
-        </ul>
-      </div>
-      <div>
-        <h2>Directions</h2>
-        <ol>
-          <li>direction</li>
-          <li>direction</li>
-          <li>direction</li>
-          <li>direction</li>
-        </ol>
-      </div>
-    </article>
+    <main class="main hidden">
+      <section class="side-bar">
+        <div class="side-bar-heading">What's Cookin'</div>
+        <article class="after-load-side-bar-display">
+          <button class="buttons" id="tags-button" type="button">Tags</button>
+          <button class="buttons" id="search-button" type="button">
+            Search
+          </button>
+          <button class="buttons" id="favs-button" type="button">Favs</button>
+        </article>
+        <article class="after-tag-click-sidebar-display hidden">
+          <ul class="tags-section">
+            <li>
+              <a href="url">tag</a>
+            </li>
+            <li>
+              <a href="url">tag</a>
+            </li>
+            <li>
+              <a href="url">tag</a>
+            </li>
+            <li>
+              <a href="url">tag</a>
+            </li>
+            <li>
+              <a href="url">tag</a>
+            </li>
+            <li>
+              <a href="url">tag</a>
+            </li>
+          </ul>
+          <div class="quick-search">
+            <button class="buttons" id="search-button-for-tags-view">
+              Search
+            </button>
+            <input
+              class="search-input hidden"
+              type="search"
+              id="site-search"
+              name="q"
+            />
+            <button class="buttons hidden" id="submit-button">Submit</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="recipes-display">
+        <div class="after-load-main-view">
+          <img src="" alt="food-stock-photo" />
+        </div>
+        <article class="after-tag-search-view hidden">
+          <div>
+            <img src="" alt="" />
+            <p>Recipe Name</p>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <p>Recipe Name</p>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <p>Recipe Name</p>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <p>Recipe Name</p>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <p>Recipe Name</p>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <p>Recipe Name</p>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <p>Recipe Name</p>
+          </div>
+        </article>
+        <article class="recipe-view hidden">
+          <h1 class="recipe-name">Recipe Name</h1>
+          <img class="recipe-image" src="" alt="recipe-photo" />
+          <div>
+            <h2 class="ingredients-label">Ingredients</h2>
+            <ul class="lists-display">
+              <li>ingredient</li>
+              <li>ingredient</li>
+              <li>ingredient</li>
+              <li>ingredient</li>
+              <li>ingredient</li>
+              <li>ingredient</li>
+              <li>ingredient</li>
+              <li>ingredient</li>
+              <li>ingredient</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="directions-label">Directions</h2>
+            <ol class="lists-display">
+              <li>direction</li>
+              <li>direction</li>
+              <li>direction</li>
+              <li>direction</li>
+              <li>direction</li>
+              <li>direction</li>
+            </ol>
+          </div>
+        </article>
+      </section>
+    </main>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
