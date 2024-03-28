@@ -14,3 +14,12 @@ body {
   margin: 0;
 }
 
+.page-load {
+  height: 100vh;
+  background-color: var(--primary-color);
+  color: var(--header-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
