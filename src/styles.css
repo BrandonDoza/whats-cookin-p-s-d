@@ -24,7 +24,44 @@ body {
   justify-content: center;
 }
 
-.side-buttons {
+.after-load-side-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-after-page-load {
+  width: 30%
+}
+
+.side-bar {
+  background-color: var(--secondary-color);
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.side-heading {
+  background-color: var(--liver-containers);
+  color:var(--coral-buttons);
+  font-size:x-large;
+  font-weight: 800;
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.after-load-main-view {
+  background-color: var(--primary-color);
+  width: 100%;
+  height: 100vh;
+}
+
+.tags, .search, .favs {
   background-color: var(--coral-buttons);
   color: var(--liver-containers);
   font-size: large;
@@ -33,4 +70,8 @@ body {
   height: 50px;
   border-radius: 25px;
   margin: 30px;
+}
+
+.hidden {
+  display: none;
 }
