@@ -1,3 +1,16 @@
-body {
-  background-color: blueviolet;
+:root {
+  --primary-color: #EEF4D4;
+  --secondary-color: #DAEFB3;
+  --coral-buttons: #EA9E8D;
+  --liver-containers: #725752;
+  --header-text: #1c2826;
 }
+
+
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  background-color: var(--primary-color);
+  margin: 0;
+}
+
