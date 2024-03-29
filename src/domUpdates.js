@@ -3,9 +3,18 @@ import { recipes , ingredients} from "../test/mock-data"
 //NOTE: Your DOM manipulation will occur in this file
 
 const landingPage = document.querySelector('.page-load')
-const navBar = document.querySelector('.after-load-side-bar')
-const navBarTags = document.querySelector('.tag-view-search')
-const homePage = document.querySelector('.after-load-main-view')
+const mainPage = document.querySelector('.main')
+const navBar = document.querySelector('.after-load-sidebar-display')
+const navBarTags = document.querySelector('.after-tag-click-sidebar-display')
+const defaultMain = document.querySelector('.after-load-main-view')
+const searchMain = document.querySelector('.after-tag-search-view')
+const recipeView = document.querySelector('.recipe-view')
+const tagButton = document.getElementById('tags-button')
+const searchButton = document.getElementById('search-button')
+const favsButton = document.getElementById('favs-button')
+const searchButtonTag = document.getElementById('search-button-for-tags-view')
+const submitButton = document.getElementById('submit-button')
+
 
 document.addEventListener('DOMContentLoaded', function(){
  setTimeout(()=>{
