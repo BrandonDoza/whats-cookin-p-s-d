@@ -4,8 +4,8 @@ import { recipes , ingredients} from "../test/mock-data"
 
 const landingPage = document.querySelector('.page-load')
 const mainPage = document.querySelector('.main')
-const navBar = document.querySelector('.after-load-sidebar-display')
-const navBarTags = document.querySelector('.after-tag-click-sidebar-display')
+const navBar = document.querySelector('.after-load-side-bar-display')
+const navBarTags = document.querySelector('.after-tag-click-side-bar-display')
 const defaultMain = document.querySelector('.after-load-main-view')
 const searchMain = document.querySelector('.after-tag-search-view')
 const recipeView = document.querySelector('.recipe-view')
@@ -18,9 +18,8 @@ const submitButton = document.getElementById('submit-button')
 
 document.addEventListener('DOMContentLoaded', function(){
  setTimeout(()=>{
-    landingPage.classList.add('hidden')
-    navBar.classList.remove('hidden')
-    homePage.classList.remove('hidden')
+    hideElements([landingPage])
+    showElements([navBar, mainPage])
  },3000)
 });
 navBar.addEventListener('click', (event) =>{
@@ -30,6 +29,16 @@ navBar.addEventListener('click', (event) =>{
       navBar.classList.add('hidden')
     }
   });
+function hideElements(elementArray){
+  elementArray.forEach(element => {
+    element.classList.add('hidden')
+  });
+};
+function showElements(elementArray){
+  elementArray.forEach(element => {
+    element.classList.remove('hidden')
+  });
+};
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 // const displayRecipes = () => {
