@@ -1,14 +1,15 @@
-import { recipes , ingredients} from "../test/mock-data"
+import {recipes , ingredients} from "../test/mock-data"
 
 //NOTE: Your DOM manipulation will occur in this file
 
 const landingPage = document.querySelector('.page-load')
 const mainPage = document.querySelector('.main')
 const navBar = document.querySelector('.after-load-side-bar-display')
-const navBarTags = document.querySelector('.after-tag-click-side-bar-display')
+const navBarTags = document.querySelector('.after-tag-click-sidebar-display')
 const defaultMain = document.querySelector('.after-load-main-view')
 const searchMain = document.querySelector('.after-tag-search-view')
 const recipeView = document.querySelector('.recipe-view')
+const searchField = document.querySelector('.search-input')
 const tagButton = document.getElementById('tags-button')
 const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
@@ -19,18 +20,40 @@ const submitButton = document.getElementById('submit-button')
 document.addEventListener('DOMContentLoaded', function(){
  setTimeout(()=>{
     hideElements([landingPage])
-    showElements([navBar, mainPage])
- },3000)
+    showElements([mainPage])
+ },30)
 });
-navBar.addEventListener('click', (event) =>{
-  
-  let element = event.target
-  if (element.classList.contains('tags')){
-      navBar.classList.add('hidden')
-    }
+tagButton.addEventListener('click', () =>{
+  hideElements([navBar])
+  showElements([navBarTags, searchButtonTag])
   });
+searchButtonTag.addEventListener('click', ()=>{
+  hideElements([searchButtonTag])
+  showElements([searchField, submitButton])
+  })
+searchButton.addEventListener('click',()=>{
+  hideElements([searchButtonTag, navBar])
+  showElements([navBarTags, searchField, submitButton])
+});
+submitButton.addEventListener('click',()=>{
+  hideElements([defaultMain, recipeView])
+  showElements([searchMain])
+});
+favsButton.addEventListener('click', ()=>{
+  hideElements([defaultMain,recipeView])
+  showElements([searchMain])
+});
+searchMain.addEventListener('click', (event)=>{
+  let element = event.target;
+  console.log(element.innerText)
+  //set the clicked element as a parameter for some navigation target
+  hideElements([searchMain])
+  showElements([recipeView])
+})
+
 function hideElements(elementArray){
   elementArray.forEach(element => {
+    console.log(element)
     element.classList.add('hidden')
   });
 };
