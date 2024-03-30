@@ -8,7 +8,7 @@ const createUser = (name, id, recipesToCook) => {
         recipesToCook
     }
     return user
-}
+} 
 
 const addRecipeToCook = (recipe, user) =>{
     user.recipesToCook.push(recipe)

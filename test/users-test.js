@@ -105,7 +105,7 @@ describe('filter users saved recipes by tag', () => {
         const filteredRecipes = filterUserRecipesByTag('lunch', user);
         expect(filteredRecipes).to.deep.equal([[recipes[2]]])
     })
-})
+}) 
 
 describe('filter by name', () => {
     let user;
