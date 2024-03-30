@@ -44,7 +44,7 @@ function getTagsFromData(){
       }
     });
   });
-  console.log(tagsArray)
+  return tagsArray
 }
 const filterRecipeTag = (tag,recipeData) => { 
   let filterRecipes = recipeData.filter((recipe) => {

@@ -1,6 +1,6 @@
 
 import { getDataArray } from "./apiCalls"
-import { filterRecipeTag, getRecipeData } from "./recipes"
+import { filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
 
 //NOTE: Your DOM manipulation will occur in this file
 
@@ -12,28 +12,24 @@ const defaultMain = document.querySelector('.after-load-main-view')
 const searchMain = document.querySelector('.after-tag-search-view')
 const recipeView = document.querySelector('.recipe-view')
 const searchField = document.querySelector('.search-input')
-const tagButton = document.getElementById('tags-button')
+const tagSection = document.querySelector('.tags-section')
 const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
+const tags = getTagsFromData()
 
 
 document.addEventListener('DOMContentLoaded', function(){
+
  setTimeout(()=>{
     hideElements([landingPage])
     showElements([mainPage])
  },30)
 });
-tagButton.addEventListener('click', () =>{
-  hideElements([navBar])
-  showElements([navBarTags, searchButtonTag])
-  });
-searchButtonTag.addEventListener('click', ()=>{
-  hideElements([searchButtonTag])
-  showElements([searchField, submitButton])
-  })
 searchButton.addEventListener('click',()=>{
+  const tags = renderFilterTags()
+  populateTags(tags)
   hideElements([searchButtonTag, navBar])
   showElements([navBarTags, searchField, submitButton])
 });
@@ -84,6 +80,22 @@ function renderSearchResults(recipes){
   });
   return toPrint
 }
+function populateTags(tags){
+  tagSection.innerHTML = ''
+  tags.forEach(tag =>{
+    tagSection.innerHTML+= tag
+  });
+    
+};
+function renderFilterTags(search = tags){
+  let toPrint = search.map(element => {
+    element = `<li>
+    ${element}
+    </li>`
+    return element
+  });
+  return toPrint
+};
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 // const displayRecipes = () => {
 //   console.log(`Displaying recipes now`)
