@@ -27,6 +27,21 @@ document.addEventListener('DOMContentLoaded', function(){
     showElements([mainPage])
  },30)
 });
+tagSection.addEventListener('click', (event) =>{
+  const element = event.target
+  console.log(element)
+  if(!element.classList.contains('tags-section')){
+    const selectedTag = element.innerText
+    let recipes = getRecipeData()
+    let searchResult = filterRecipeTag(selectedTag, recipes)
+    searchResult = renderSearchResults(searchResult)
+    populateSearchResults(searchResult)
+    hideElements([defaultMain, recipeView])
+    showElements([searchMain])
+  }
+ 
+
+});
 searchButton.addEventListener('click',()=>{
   const tags = renderFilterTags()
   populateTags(tags)
@@ -64,12 +79,15 @@ function showElements(elementArray){
     element.classList.remove('hidden')
   });
 };
+
+
 function populateSearchResults(searchResult){
   searchMain.innerHTML = ''
   searchResult.forEach(element => {
     searchMain.innerHTML += element
   });
 };
+
 function renderSearchResults(recipes){
   let toPrint = recipes.map(element => {  
     element = `<div>
@@ -79,7 +97,8 @@ function renderSearchResults(recipes){
     return element
   });
   return toPrint
-}
+};
+
 function populateTags(tags){
   tagSection.innerHTML = ''
   tags.forEach(tag =>{
@@ -87,10 +106,11 @@ function populateTags(tags){
   });
     
 };
+
 function renderFilterTags(search = tags){
   let toPrint = search.map(element => {
     element = `<li>
-    ${element}
+    <button>${element}</button>
     </li>`
     return element
   });
