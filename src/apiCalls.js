@@ -12,14 +12,24 @@ const promises = [users(),ingredients(),recipes()]
 
 let dataArray = []
 
+
+
 Promise.all(promises)
 .then(promises => {
-    // getData(promises)
-    console.log(promises)
+    getData(promises)
+    
 })
 .catch(err => console.log('ERROR',err))
 
 
-// function getData (promises){
-//     return dataArray.push(promises)
-// }
+function getData (promises){
+    promises.forEach(element => {
+        dataArray.push(element)
+        console.log(dataArray)
+    });
+    return dataArray
+}
+
+export function getDataArray(){
+    return dataArray
+}

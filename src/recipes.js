@@ -1,5 +1,9 @@
 //Here is an example demonstrating logic separated that can be imported into the scripts and test files. Feel free to update this later! 
-import{recipes, ingredients} from '../test/mock-data';
+
+import {recipeData} from './data/recipes'
+const recipes = recipeData
+console.log(recipes)
+
 
 function getRecipeData(){
   return recipes;
@@ -30,15 +34,28 @@ function estimatedCostInCents(recipe, ingredientList) {
   }, 0)
   return total
 }
+function getTagsFromData(){
+  const tagsArray = []
+  let tags = recipes.map(recipe => recipe.tags)
+  tags.forEach(subArray => {
+    subArray.forEach(element => {
+      if (!tagsArray.includes(element)){
+        tagsArray.push(element)
+      }
+    });
+  });
+  return tagsArray
+}
 const filterRecipeTag = (tag,recipeData) => { 
   let filterRecipes = recipeData.filter((recipe) => {
      return recipe['tags'].includes(tag);
   });
+  console.log('hallo',filterRecipes)
   let filteredRecipes = filterRecipes.reduce((acc, recipes) =>{
       acc = recipes
       return acc
   }, {})
-  return filteredRecipes
+  return filterRecipes
 }
 
 const filterRecipeName = (name, recipeData) => {
@@ -53,5 +70,6 @@ export {getRecipeData,
   estimatedCostInCents, 
   filterRecipeName, 
   filterRecipeTag,
-  findRecipeIngredients};
+  findRecipeIngredients,
+  getTagsFromData};
 
