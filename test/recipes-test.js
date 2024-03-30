@@ -43,6 +43,12 @@ describe('filterRecipeName', () => {
     const pancakes = recipeData[0];
     expect(searchResult).to.deep.equal(pancakes);
   });
+  it('should notify the user if a name is not found', () => {
+    const recipeData = getRecipeData();
+    const name = 'Hamburgers';
+    const filteredRecipes = filterRecipeName(name, recipeData);
+    expect(filteredRecipes).to.equal(null)
+  })
 })
 describe('getRecipeInstructions', () => {
   it('Should be a function', () => {
