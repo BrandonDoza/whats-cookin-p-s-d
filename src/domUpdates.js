@@ -19,6 +19,7 @@ const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
+const data = getDataArray()
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -42,7 +43,7 @@ tagSection.addEventListener('click', (event) =>{
   console.log(element)
   if(!element.classList.contains('tags-section')){
     const selectedTag = element.innerText
-    let recipes = getRecipeData()
+    let recipes = getRecipeData(data[2].recipes)
     let searchResult = filterRecipeTag(selectedTag, recipes)
     updateRecipeDataModel(searchResult)
     searchResult = renderSearchResults(searchResult)
