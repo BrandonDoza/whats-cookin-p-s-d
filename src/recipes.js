@@ -45,6 +45,9 @@ const filterRecipeName = (name, recipeData) => {
 let findRecipe = recipeData.find((recipe) => {
   return recipe['name'].includes(name)
 });
+  if(!findRecipe) {
+    return null
+  }
 return findRecipe
 }
 export {getRecipeData,
