@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import {
+  createUser,
   addRecipeToCook,
   removeRecipeToCook,
   filterUserRecipesByTag,
@@ -7,6 +8,13 @@ import {
 } from "../src/users";
 import { recipes } from "./mock-data";
 
+
+describe("creating a user", () => {
+  it("should create a user", () => {
+    const user = createUser("Saige O'Kon", 1, [])
+    expect(user).to.deep.equal({ name: "Saige O'Kon", id: 1, recipesToCook: [] })
+  })
+})
 describe("add recipe", () => {
   let user;
 
@@ -95,7 +103,7 @@ describe('filter users saved recipes by tag', () => {
     })
     it('should filter users recipes by a given tag', () => {
         const filteredRecipes = filterUserRecipesByTag('lunch', user);
-        expect(filteredRecipes).to.deep.equal([recipes[2]])
+        expect(filteredRecipes).to.deep.equal([[recipes[2]]])
     })
 })
 
