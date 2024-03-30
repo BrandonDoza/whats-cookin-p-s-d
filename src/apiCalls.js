@@ -10,7 +10,9 @@ const recipes = () => fetch("https://what-s-cookin-starter-kit.herokuapp.com/api
 
 const promises = [users(),ingredients(),recipes()]
 
-export let dataArray = []
+let dataArray = []
+
+
 
 Promise.all(promises)
 .then(promises => {
@@ -23,7 +25,11 @@ Promise.all(promises)
 function getData (promises){
     promises.forEach(element => {
         dataArray.push(element)
+        console.log(dataArray)
     });
     return dataArray
 }
 
+export function getDataArray(){
+    return dataArray
+}
