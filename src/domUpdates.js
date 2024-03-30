@@ -33,15 +33,12 @@ tagSection.addEventListener('click', (event) =>{
     const selectedTag = element.innerText
     let recipes = getRecipeData()
     let searchResult = filterRecipeTag(selectedTag, recipes)
-
     updateRecipeDataModel(searchResult)
     searchResult = renderSearchResults(searchResult)
     populateSearchResults(searchResult)
     hideElements([defaultMain, recipeView])
     showElements([searchMain])
   }
- 
-
 });
 searchButton.addEventListener('click',()=>{
   const tags = renderFilterTags()
@@ -84,8 +81,8 @@ function populateSearchResults(searchResult){
 };
 
 function renderSearchResults(recipes){
-  let toPrint = recipes.map(element => {  
-    element = `<div>
+  let toPrint = recipes.map((element, i) => {  
+    element = `<div id = ${i}>
             <img src="${element.image}" alt="${element.name}" />
             <p>${element.name}</p>
       </div>`;
