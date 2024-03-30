@@ -2,8 +2,11 @@ import { use } from "chai";
 import { filterRecipeName, filterRecipeTag } from "./recipes";
 
 const addRecipeToCook = (recipe, user) =>{
+    if (!user.recipesToCook.includes(recipe)) {
     user.recipesToCook.push(recipe)
-
+    } else {
+        return null
+    }
     return user
 };
 function removeRecipeToCook (recipe, user){

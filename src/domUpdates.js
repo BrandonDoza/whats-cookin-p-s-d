@@ -68,6 +68,30 @@ function showElements(elementArray){
 //   console.log(`Displaying recipes now`)
 // }
 
+//**<><><><>>>>>>>>><<<<<<<<<<<<><><><><>**
+// This can be added to the submit button DOM function 
+//Not sure what you have it named, but we can modify this function below
+// to fit the needs
+// const displaySearchResults = () => {
+//  const result = filterRecipeName(name, recipeData);
+//  if (!result) {
+//  searchMain.innerText = "No Results Found"
+//   } else {
+//  searchMain.innerHTML = <><>whatever recipe is being populated<><>
+// }
+//}
+//
+
+//**<><><><><>>>>>>>>>>>><<<<<<<<<<<><><><>**//
+// Similarily in the adding a recipe to recipes to cook array
+// const addRecipe = () + > {
+// const result = addRecipeToCook(recipe, user)
+// if (!result){
+// not sure how we want to handle this on the dom
+//  }else {
+// element.innerText = //however we want to handle this
+// }
+// }
 
 // export {
 //   displayRecipes,
