@@ -41,6 +41,13 @@ describe("add recipe", () => {
         recipesToCook: [recipe1, recipe2],
       });
     });
+    it('should not add a recipe more than once', () => {
+      const recipe1 = recipes[0];
+      const recipe2 = recipes[1];
+      const addRecipe = addRecipeToCook(recipe1, user);
+      const addAnotherRecipe = addRecipeToCook(recipe1, addRecipe);
+      expect(addAnotherRecipe).to.equal(null)
+    })
 });
 
 describe('remove recipe', () => {
