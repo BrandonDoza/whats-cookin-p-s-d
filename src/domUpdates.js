@@ -1,6 +1,7 @@
 
 import { getDataArray } from "./apiCalls"
 import { filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
+import { dataModel, updateRecipeDataModel } from "./scripts"
 
 //NOTE: Your DOM manipulation will occur in this file
 
@@ -17,8 +18,6 @@ const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
-const tags = getTagsFromData()
-
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -34,6 +33,8 @@ tagSection.addEventListener('click', (event) =>{
     const selectedTag = element.innerText
     let recipes = getRecipeData()
     let searchResult = filterRecipeTag(selectedTag, recipes)
+
+    updateRecipeDataModel(searchResult)
     searchResult = renderSearchResults(searchResult)
     populateSearchResults(searchResult)
     hideElements([defaultMain, recipeView])
@@ -49,12 +50,6 @@ searchButton.addEventListener('click',()=>{
   showElements([navBarTags, searchField, submitButton])
 });
 submitButton.addEventListener('click',()=>{
-  hideElements([defaultMain, recipeView])
-  showElements([searchMain])
-  let recipes = getRecipeData()
-  let searchResult = filterRecipeTag('starter', recipes)
-  searchResult = renderSearchResults(searchResult)
-  populateSearchResults(searchResult)
 });
 favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
@@ -99,6 +94,7 @@ function renderSearchResults(recipes){
   return toPrint
 };
 
+
 function populateTags(tags){
   tagSection.innerHTML = ''
   tags.forEach(tag =>{
@@ -107,7 +103,7 @@ function populateTags(tags){
     
 };
 
-function renderFilterTags(search = tags){
+function renderFilterTags(search = dataModel.tags){
   let toPrint = search.map(element => {
     element = `<li>
     <button>${element}</button>
