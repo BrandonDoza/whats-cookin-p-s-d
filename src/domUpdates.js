@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function(){
     showElements([mainPage])
  },30)
 });
+searchMain.addEventListener('click', (event) =>{
+  const element = event.target.parentElement.id;
+  if(element){
+    hideElements([searchMain])
+    showElements([recipeView])
+  }
+  
+})
 tagSection.addEventListener('click', (event) =>{
   const element = event.target
   console.log(element)
@@ -52,13 +60,12 @@ favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
   showElements([searchMain])
 });
-searchMain.addEventListener('click', (event)=>{
-  let element = event.target;
-  console.log(element.innerText)
-  //set the clicked element as a parameter for some navigation target
-  hideElements([searchMain])
-  showElements([recipeView])
-})
+// searchMain.addEventListener('click', (event)=>{
+//   let element = event.target;
+//   console.log(element.innerText)
+//   //set the clicked element as a parameter for some navigation target
+
+// })
 
 function hideElements(elementArray){
   elementArray.forEach(element => {
