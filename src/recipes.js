@@ -34,6 +34,18 @@ function estimatedCostInCents(recipe, ingredientList) {
   }, 0)
   return total
 }
+function getTagsFromData(){
+  const tagsArray = []
+  let tags = recipes.map(recipe => recipe.tags)
+  tags.forEach(subArray => {
+    subArray.forEach(element => {
+      if (!tagsArray.includes(element)){
+        tagsArray.push(element)
+      }
+    });
+  });
+  return tagsArray
+}
 const filterRecipeTag = (tag,recipeData) => { 
   let filterRecipes = recipeData.filter((recipe) => {
      return recipe['tags'].includes(tag);
@@ -58,5 +70,6 @@ export {getRecipeData,
   estimatedCostInCents, 
   filterRecipeName, 
   filterRecipeTag,
-  findRecipeIngredients};
+  findRecipeIngredients,
+  getTagsFromData};
 
