@@ -1,5 +1,5 @@
 
-import { dataArray } from "./apiCalls"
+import { getDataArray } from "./apiCalls"
 
 //NOTE: Your DOM manipulation will occur in this file
 
@@ -16,11 +16,11 @@ const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
-
+const dataArray = getDataArray()
 
 
 document.addEventListener('DOMContentLoaded', function(){
-  console.log(dataArray)
+
  setTimeout(()=>{
     hideElements([landingPage])
     showElements([mainPage])
