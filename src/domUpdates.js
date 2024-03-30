@@ -1,6 +1,7 @@
 
 import { getDataArray } from "./apiCalls"
-import { filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
+import ingredientsData from "./data/ingredients"
+import { filterRecipeTag, findRecipeIngredients, getIngredientsData, getRecipeData, getRecipeInstructions} from "./recipes"
 import { dataModel, updateRecipeDataModel } from "./scripts"
 
 //NOTE: Your DOM manipulation will occur in this file
@@ -29,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function(){
 searchMain.addEventListener('click', (event) =>{
   const element = event.target.parentElement.id;
   if(element){
+    let ingredientList = getIngredientsData()
+    renderRecipePage(dataModel.currentRecipes[element], ingredientList)
     hideElements([searchMain])
     showElements([recipeView])
   }
@@ -60,12 +63,7 @@ favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
   showElements([searchMain])
 });
-// searchMain.addEventListener('click', (event)=>{
-//   let element = event.target;
-//   console.log(element.innerText)
-//   //set the clicked element as a parameter for some navigation target
 
-// })
 
 function hideElements(elementArray){
   elementArray.forEach(element => {
@@ -116,12 +114,35 @@ function renderFilterTags(search = dataModel.tags){
   });
   return toPrint
 };
-//Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
-// const displayRecipes = () => {
-//   console.log(`Displaying recipes now`)
-// }
-
-
-// export {
-//   displayRecipes,
-// }
+function renderRecipePage(recipe, ingredientList){
+  recipeView.innerHTML = ''
+  let ingredientsString = ''
+  let ingredientsStrings = findRecipeIngredients(recipe,ingredientList)
+  
+    ingredientsStrings.forEach((ingredient, i) => {
+    ingredientsString+=`
+      <li>${ingredient.name}: ${recipe["ingredients"][i].quantity.amount} ${recipe["ingredients"][i].quantity.unit}</li>` 
+  });
+  let instructionsString = ''
+  let instructionsStrings = getRecipeInstructions(recipe)
+    instructionsStrings.forEach(instruction => {
+    instructionsString+=`
+      <li>${instruction.instruction}</li>`
+  });
+  console.log(ingredientsString, instructionsString)
+  
+  recipeView.innerHTML+= `<h1 class="recipe-name">${recipe.name}</h1>
+  <img class="recipe-image" src="${recipe.image}" alt="recipe-photo">
+  <div>
+  <h2 class="ingredients-label">Ingredients</h2>
+  <ul class="lists-display">
+  ${ingredientsString}
+  </ul>
+  </div>
+  <div>
+  <h2 class="directions-label">Directions</h2>
+  <ol class="lists-display">
+  ${instructionsString}
+  </ol>
+  </div>`
+  };
