@@ -1,5 +1,9 @@
 //Here is an example demonstrating logic separated that can be imported into the scripts and test files. Feel free to update this later! 
-import{recipes, ingredients} from '../test/mock-data';
+
+import {recipeData} from './data/recipes'
+const recipes = recipeData
+console.log(recipes)
+
 
 function getRecipeData(){
   return recipes;
@@ -34,11 +38,12 @@ const filterRecipeTag = (tag,recipeData) => {
   let filterRecipes = recipeData.filter((recipe) => {
      return recipe['tags'].includes(tag);
   });
+  console.log('hallo',filterRecipes)
   let filteredRecipes = filterRecipes.reduce((acc, recipes) =>{
       acc = recipes
       return acc
   }, {})
-  return filteredRecipes
+  return filterRecipes
 }
 
 const filterRecipeName = (name, recipeData) => {

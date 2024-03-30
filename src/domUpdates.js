@@ -1,5 +1,6 @@
 
 import { getDataArray } from "./apiCalls"
+import { filterRecipeTag, getRecipeData } from "./recipes"
 
 //NOTE: Your DOM manipulation will occur in this file
 
@@ -16,11 +17,9 @@ const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
-const dataArray = getDataArray()
 
 
 document.addEventListener('DOMContentLoaded', function(){
-
  setTimeout(()=>{
     hideElements([landingPage])
     showElements([mainPage])
@@ -41,6 +40,9 @@ searchButton.addEventListener('click',()=>{
 submitButton.addEventListener('click',()=>{
   hideElements([defaultMain, recipeView])
   showElements([searchMain])
+  let recipes = getRecipeData()
+  let searchResult = filterRecipeTag('starter', recipes)
+  searchResult = renderSearchResults(searchResult)
 });
 favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
@@ -65,6 +67,15 @@ function showElements(elementArray){
     element.classList.remove('hidden')
   });
 };
+function renderSearchResults(recipes){
+  let toPrint = []
+  console.log('hi',recipes)
+  recipes.forEach(element => {
+    console.log(element)
+    toPrint.push(element)
+  });
+  console.log(toPrint)
+}
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 // const displayRecipes = () => {
