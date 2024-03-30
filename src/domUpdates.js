@@ -43,6 +43,7 @@ submitButton.addEventListener('click',()=>{
   let recipes = getRecipeData()
   let searchResult = filterRecipeTag('starter', recipes)
   searchResult = renderSearchResults(searchResult)
+  populateSearchResults(searchResult)
 });
 favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
@@ -67,16 +68,22 @@ function showElements(elementArray){
     element.classList.remove('hidden')
   });
 };
-function renderSearchResults(recipes){
-  let toPrint = []
-  console.log('hi',recipes)
-  recipes.forEach(element => {
-    console.log(element)
-    toPrint.push(element)
+function populateSearchResults(searchResult){
+  searchMain.innerHTML = ''
+  searchResult.forEach(element => {
+    searchMain.innerHTML += element
   });
-  console.log(toPrint)
+};
+function renderSearchResults(recipes){
+  let toPrint = recipes.map(element => {  
+    element = `<div>
+            <img src="${element.image}" alt="${element.name}" />
+            <p>${element.name}</p>
+      </div>`;
+    return element
+  });
+  return toPrint
 }
-
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 // const displayRecipes = () => {
 //   console.log(`Displaying recipes now`)
