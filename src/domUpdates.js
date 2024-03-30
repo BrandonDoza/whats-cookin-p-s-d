@@ -1,4 +1,5 @@
-import {recipes , ingredients} from "../test/mock-data"
+
+import { dataArray } from "./apiCalls"
 
 //NOTE: Your DOM manipulation will occur in this file
 
@@ -17,7 +18,9 @@ const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
 
 
+
 document.addEventListener('DOMContentLoaded', function(){
+  console.log(dataArray)
  setTimeout(()=>{
     hideElements([landingPage])
     showElements([mainPage])
