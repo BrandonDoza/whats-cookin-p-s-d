@@ -57,6 +57,10 @@ searchButton.addEventListener('click',()=>{
   showElements([navBarTags, searchField, submitButton, backButton])
 });
 submitButton.addEventListener('click',()=>{
+  let searchInput = searchField.value
+  const filteredTags = filterTagsOnSubmit(searchInput)
+  populateTags(filteredTags)
+  searchField.value = ''
 });
 favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
@@ -122,6 +126,20 @@ function renderFilterTags(search = dataModel.tags){
   });
   return toPrint
 };
+
+function filterTagsOnSubmit(input, allTags = dataModel.tags) {
+  let filteredTags = allTags.filter((tag) => {
+    return input === tag
+  })
+  .map((element) => {
+    element = `<li>
+    <button>${element}</button>
+    </li>`
+    return element
+  })
+  console.log('hello', filteredTags)
+  return filteredTags
+}
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 // const displayRecipes = () => {
 //   console.log(`Displaying recipes now`)
