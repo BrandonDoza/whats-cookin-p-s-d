@@ -59,11 +59,12 @@ const filterRecipeTag = (tag,recipeData) => {
 }
 
 const filterRecipeName = (name, recipeData) => {
-let findRecipe = recipeData.find((recipe) => {
+let findRecipe = recipeData.filter((recipe) => {
   return recipe['name'].includes(name)
 });
 return findRecipe
 }
+
 export {getRecipeData,
   getIngredientsData,
   getRecipeInstructions, 

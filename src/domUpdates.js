@@ -1,6 +1,6 @@
 
 import { getDataArray } from "./apiCalls"
-import { filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
+import { filterRecipeName, filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
 import { dataModel, updateRecipeDataModel } from "./scripts"
 
 //NOTE: Your DOM manipulation will occur in this file
@@ -18,7 +18,7 @@ const tagSection = document.querySelector('.tags-section')
 const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
-const submitButton = document.getElementById('submit-button')
+// const submitButton = document.getElementById('submit-button')
 const backButton = document.getElementById('back-button')
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -54,14 +54,30 @@ searchButton.addEventListener('click',()=>{
   const tags = renderFilterTags()
   populateTags(tags)
   hideElements([searchButtonTag, navBar])
-  showElements([navBarTags, searchField, submitButton, backButton])
+  showElements([navBarTags, searchField, backButton])
 });
-submitButton.addEventListener('click',()=>{
+// submitButton.addEventListener('click',()=>{
+//   let searchInput = searchField.value
+//   const filteredTags = filterTagsOnSubmit(searchInput)
+//   populateTags(filteredTags)
+//   searchField.value = ''
+// });
+searchField.addEventListener('input', () => {
+  let recipes = getRecipeData()
+  let recipesToLower = recipes.map((recipe) => {
+    return { ...recipe, name: recipe.name.toLowerCase() }
+  })
   let searchInput = searchField.value
-  const filteredTags = filterTagsOnSubmit(searchInput)
-  populateTags(filteredTags)
-  searchField.value = ''
-});
+  let searchInputLower = searchInput.toLowerCase()
+  let searchResult = filterRecipeName(searchInputLower, recipesToLower)
+  console.log('search', searchResult)
+  updateRecipeDataModel(searchResult) 
+  searchResult = renderSearchResults(searchResult)
+    populateSearchResults(searchResult)
+    hideElements([defaultMain, recipeView])
+    showElements([searchMain])
+    // searchField.value = ''
+})
 favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
   showElements([searchMain])
@@ -73,7 +89,7 @@ favsButton.addEventListener('click', ()=>{
 
 // })
 backButton.addEventListener('click', () => {
-  hideElements([navBarTags, searchField, submitButton, backButton, searchMain, recipeView])
+  hideElements([navBarTags, searchField, backButton, searchMain, recipeView])
   showElements([searchButtonTag, navBar, defaultMain])
 })
 
