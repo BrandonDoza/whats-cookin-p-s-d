@@ -1,7 +1,6 @@
 
 import { getDataArray } from "./apiCalls"
-import ingredientsData from "./data/ingredients"
-import { filterRecipeTag, findRecipeIngredients, getIngredientsData, getRecipeData, getRecipeInstructions} from "./recipes"
+import { filterRecipeTag, findRecipeIngredients, getRecipeInstructions, getTagsFromData} from "./recipes"
 import { dataModel, updateRecipeDataModel } from "./scripts"
 
 //NOTE: Your DOM manipulation will occur in this file
@@ -29,9 +28,11 @@ document.addEventListener('DOMContentLoaded', function(){
  },30)
 });
 searchMain.addEventListener('click', (event) =>{
+  
   const element = event.target.parentElement.id;
   if(element){
-    let ingredientList = getIngredientsData()
+    let ingredientList = data[1].ingredients
+    console.log('hello', dataModel.currentRecipes[element])
     renderRecipePage(dataModel.currentRecipes[element], ingredientList)
     hideElements([searchMain])
     showElements([recipeView])
@@ -43,8 +44,9 @@ tagSection.addEventListener('click', (event) =>{
   console.log(element)
   if(!element.classList.contains('tags-section')){
     const selectedTag = element.innerText
-    let recipes = getRecipeData(data[2].recipes)
+    let recipes = data[2].recipes
     let searchResult = filterRecipeTag(selectedTag, recipes)
+    console.log(searchResult)
     updateRecipeDataModel(searchResult)
     searchResult = renderSearchResults(searchResult)
     populateSearchResults(searchResult)
@@ -53,7 +55,9 @@ tagSection.addEventListener('click', (event) =>{
   }
 });
 searchButton.addEventListener('click',()=>{
-  const tags = renderFilterTags()
+  let recipes = data[2].recipes
+  let tags = getTagsFromData(recipes)
+  tags = renderFilterTags(tags)
   populateTags(tags)
   hideElements([searchButtonTag, navBar])
   showElements([navBarTags, searchField, submitButton])
@@ -106,7 +110,7 @@ function populateTags(tags){
     
 };
 
-function renderFilterTags(search = dataModel.tags){
+function renderFilterTags(search){
   let toPrint = search.map(element => {
     element = `<li>
     <button>${element}</button>
