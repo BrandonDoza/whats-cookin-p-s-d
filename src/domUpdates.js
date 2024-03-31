@@ -19,13 +19,15 @@ const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
 const data = getDataArray()
+let currentUser = document.querySelector(".current-user")
+//let user = data[0].users.name
 
 document.addEventListener('DOMContentLoaded', function(){
-
- setTimeout(()=>{
+  setTimeout(()=>{
+    getRandomUser(data)
     hideElements([landingPage])
     showElements([mainPage])
- },30)
+ },300)
 });
 searchMain.addEventListener('click', (event) =>{
   
@@ -151,3 +153,15 @@ function renderRecipePage(recipe, ingredientList){
   </ol>
   </div>`
   };
+
+let getRandomIndex = (array) =>{
+    return Math.floor(Math.random() * array.length)
+}
+
+function getRandomUser(data){
+  let user = data[0].users
+  let randomIndex = getRandomIndex(user)
+  let  randomUser = user[randomIndex]
+     console.log('random',randomUser)
+  currentUser.innerHTML = randomUser.name
+}
