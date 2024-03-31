@@ -34,6 +34,7 @@ body {
 .side-bar {
   background-color: var(--secondary-color);
   width: 30%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -41,6 +42,8 @@ body {
 .side-bar-heading {
   background-color: var(--liver-containers);
   color: var(--coral-buttons);
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
   font-size: xx-large;
   font-weight: 800;
   height: 250px;
@@ -55,6 +58,7 @@ body {
   height: 500px;
   align-items: center;
   justify-content: flex-start;
+  margin-top: 25px;
 }
 
 .after-load-main-view {
@@ -107,7 +111,7 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 50%;
+  height: 70%;
   align-items: center;
   justify-content: flex-start;
 }
@@ -173,15 +177,19 @@ li {
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  max-height: 300px;
+  max-height: 500px;
   border-radius: 25px;
-  padding: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
   width: 100%;
 }
 
 .recipe-image {
   height: 150px;
   width: 100%;
+  border-radius: 15px;
 }
 
 .hidden {

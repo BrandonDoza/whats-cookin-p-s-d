@@ -12,6 +12,7 @@ const navBarTags = document.querySelector('.after-tag-click-sidebar-display')
 const defaultMain = document.querySelector('.after-load-main-view')
 const searchMain = document.querySelector('.after-tag-search-view')
 const recipeView = document.querySelector('.recipe-view')
+const recipesDisplay = document.querySelector('.recipes-display')
 const searchField = document.querySelector('.search-input')
 const tagSection = document.querySelector('.tags-section')
 const searchButton = document.getElementById('search-button')
@@ -68,8 +69,8 @@ favsButton.addEventListener('click', ()=>{
 
 // })
 backButton.addEventListener('click', () => {
-  hideElements([navBarTags, searchField, submitButton, backButton])
-  showElements([searchButtonTag, navBar])
+  hideElements([navBarTags, searchField, submitButton, backButton, searchMain, recipeView])
+  showElements([searchButtonTag, navBar, defaultMain])
 })
 
 function hideElements(elementArray){
