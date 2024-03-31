@@ -18,14 +18,14 @@ const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
-const data = getDataArray()
 let currentUser = document.querySelector(".current-user")
-//let user = data[0].users.name
+const data = getDataArray()
+const addtoFavorites = document.querySelector('.fav-add')
 
 document.addEventListener('DOMContentLoaded', function(){
   setTimeout(()=>{
-    getRandomUser(data)
     hideElements([landingPage])
+    getRandomUser(data)
     showElements([mainPage])
  },300)
 });
@@ -70,7 +70,9 @@ favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
   showElements([searchMain])
 });
-
+addtoFavorites.addEventListener('click', () => {
+  
+})
 
 function hideElements(elementArray){
   elementArray.forEach(element => {
@@ -163,5 +165,7 @@ function getRandomUser(data){
   let randomIndex = getRandomIndex(user)
   let  randomUser = user[randomIndex]
      console.log('random',randomUser)
-  currentUser.innerHTML = randomUser.name
+  currentUser.innerHTML = randomUser.name + '!'
 }
+
+function 
