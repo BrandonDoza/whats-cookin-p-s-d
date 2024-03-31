@@ -18,6 +18,7 @@ const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
+const backButton = document.getElementById('back-button')
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -52,7 +53,7 @@ searchButton.addEventListener('click',()=>{
   const tags = renderFilterTags()
   populateTags(tags)
   hideElements([searchButtonTag, navBar])
-  showElements([navBarTags, searchField, submitButton])
+  showElements([navBarTags, searchField, submitButton, backButton])
 });
 submitButton.addEventListener('click',()=>{
 });
@@ -66,6 +67,10 @@ favsButton.addEventListener('click', ()=>{
 //   //set the clicked element as a parameter for some navigation target
 
 // })
+backButton.addEventListener('click', () => {
+  hideElements([navBarTags, searchField, submitButton, backButton])
+  showElements([searchButtonTag, navBar])
+})
 
 function hideElements(elementArray){
   elementArray.forEach(element => {
