@@ -50,12 +50,11 @@ searchMain.addEventListener('click', (event) =>{
   const element = event.target.parentElement.id;
   if(element){
     let ingredientList = data[1].ingredients
-    dataModel.currentRecipe = dataModel.currentRecipes[element])
+    dataModel.currentRecipe = dataModel.currentRecipes[element]
     renderRecipePage(dataModel.currentRecipes[element], ingredientList)
     hideElements([searchMain])
     showElements([recipeView])
-  }
-  
+  }  
 })
 tagSection.addEventListener('click', (event) =>{
   const element = event.target
@@ -79,9 +78,9 @@ recipeView.addEventListener('click', (event) => {
   if (element.classList.contains('fav-button')){
     console.log("Yessir")
     addRecipeToCook(dataModel.currentRecipe, dataModel.currentUser )
-    console.log('cur', currUser)
+    console.log('cur', dataModel.currentUser)
   }
-  return currUser
+  // return currUser
 })
 searchButton.addEventListener('click',()=>{
   console.log('user', dataModel.currentUser)
@@ -218,10 +217,10 @@ let getRandomIndex = (array) =>{
 function getRandomUser(user){
   let randomIndex = getRandomIndex(user)
   let randomUser = user[randomIndex]
-     currUser = randomUser
+     dataModel.currentUser = randomUser
   currentUser.innerHTML = randomUser.name + '!'
-  console.log('here', currUser)
-  return currUser
+  // console.log('here', currUser)
+  return randomUser
 }
 
 
