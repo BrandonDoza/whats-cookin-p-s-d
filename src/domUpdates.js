@@ -1,6 +1,6 @@
 
 import { getDataArray } from "./apiCalls"
-import { filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
+import { filterRecipeName, filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
 import { dataModel, updateRecipeDataModel } from "./scripts"
 
 //NOTE: Your DOM manipulation will occur in this file
@@ -12,19 +12,21 @@ const navBarTags = document.querySelector('.after-tag-click-sidebar-display')
 const defaultMain = document.querySelector('.after-load-main-view')
 const searchMain = document.querySelector('.after-tag-search-view')
 const recipeView = document.querySelector('.recipe-view')
+const recipesDisplay = document.querySelector('.recipes-display')
 const searchField = document.querySelector('.search-input')
 const tagSection = document.querySelector('.tags-section')
 const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
-const submitButton = document.getElementById('submit-button')
+// const submitButton = document.getElementById('submit-button')
+const backButton = document.getElementById('back-button')
 
 document.addEventListener('DOMContentLoaded', function(){
 
  setTimeout(()=>{
     hideElements([landingPage])
     showElements([mainPage])
- },30)
+ },1500)
 });
 searchMain.addEventListener('click', (event) =>{
   const element = event.target.parentElement.id;
@@ -52,10 +54,30 @@ searchButton.addEventListener('click',()=>{
   const tags = renderFilterTags()
   populateTags(tags)
   hideElements([searchButtonTag, navBar])
-  showElements([navBarTags, searchField, submitButton])
+  showElements([navBarTags, searchField, backButton])
 });
-submitButton.addEventListener('click',()=>{
-});
+// submitButton.addEventListener('click',()=>{
+//   let searchInput = searchField.value
+//   const filteredTags = filterTagsOnSubmit(searchInput)
+//   populateTags(filteredTags)
+//   searchField.value = ''
+// });
+searchField.addEventListener('input', () => {
+  let recipes = getRecipeData()
+  let recipesToLower = recipes.map((recipe) => {
+    return { ...recipe, name: recipe.name.toLowerCase() }
+  })
+  let searchInput = searchField.value
+  let searchInputLower = searchInput.toLowerCase()
+  let searchResult = filterRecipeName(searchInputLower, recipesToLower)
+  console.log('search', searchResult)
+  updateRecipeDataModel(searchResult) 
+  searchResult = renderSearchResults(searchResult)
+    populateSearchResults(searchResult)
+    hideElements([defaultMain, recipeView])
+    showElements([searchMain])
+    // searchField.value = ''
+})
 favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
   showElements([searchMain])
@@ -66,6 +88,10 @@ favsButton.addEventListener('click', ()=>{
 //   //set the clicked element as a parameter for some navigation target
 
 // })
+backButton.addEventListener('click', () => {
+  hideElements([navBarTags, searchField, backButton, searchMain, recipeView])
+  showElements([searchButtonTag, navBar, defaultMain])
+})
 
 function hideElements(elementArray){
   elementArray.forEach(element => {
@@ -116,6 +142,20 @@ function renderFilterTags(search = dataModel.tags){
   });
   return toPrint
 };
+
+function filterTagsOnSubmit(input, allTags = dataModel.tags) {
+  let filteredTags = allTags.filter((tag) => {
+    return input === tag
+  })
+  .map((element) => {
+    element = `<li>
+    <button>${element}</button>
+    </li>`
+    return element
+  })
+  console.log('hello', filteredTags)
+  return filteredTags
+}
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 // const displayRecipes = () => {
 //   console.log(`Displaying recipes now`)
