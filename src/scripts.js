@@ -11,7 +11,8 @@ import { displayRecipes } from './domUpdates'
 
 export var dataModel = {
     currentRecipes : [],
-    currentUser: {}
+    currentUser: {},
+    currentRecipe: {}
 };
 export function updateRecipeDataModel(searchResult){
     dataModel.currentRecipes = searchResult

@@ -169,6 +169,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 50%;
   height: 100%;
 }
@@ -194,8 +195,8 @@ li {
   overflow-y: auto;
   max-height: 500px;
   border-radius: 25px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-top: 0;
   padding-bottom: 0;
   width: 100%;
