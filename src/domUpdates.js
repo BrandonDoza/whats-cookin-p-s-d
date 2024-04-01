@@ -1,7 +1,8 @@
 
 import { getDataArray } from "./apiCalls"
-import { filterRecipeName, filterRecipeTag, getRecipeData, getTagsFromData } from "./recipes"
+import { filterRecipeTag, findRecipeIngredients, getRecipeInstructions, getTagsFromData} from "./recipes"
 import { dataModel, updateRecipeDataModel } from "./scripts"
+import { addRecipeToCook } from "./users"
 
 //NOTE: Your DOM manipulation will occur in this file
 
@@ -18,19 +19,30 @@ const tagSection = document.querySelector('.tags-section')
 const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
+
+const submitButton = document.getElementById('submit-button')
+const currentUser = document.querySelector(".current-user")
+const data = getDataArray()
+const addtoFavorites = document.querySelector('.fav-add')
+let currUser;
 // const submitButton = document.getElementById('submit-button')
 const backButton = document.getElementById('back-button')
 
-document.addEventListener('DOMContentLoaded', function(){
 
- setTimeout(()=>{
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(()=>{
     hideElements([landingPage])
+    getRandomUser(data)
     showElements([mainPage])
  },1500)
 });
 searchMain.addEventListener('click', (event) =>{
+  
   const element = event.target.parentElement.id;
   if(element){
+    let ingredientList = data[1].ingredients
+    console.log('hello', dataModel.currentRecipes[element])
+    renderRecipePage(dataModel.currentRecipes[element], ingredientList)
     hideElements([searchMain])
     showElements([recipeView])
   }
@@ -41,8 +53,9 @@ tagSection.addEventListener('click', (event) =>{
   console.log(element)
   if(!element.classList.contains('tags-section')){
     const selectedTag = element.innerText
-    let recipes = getRecipeData()
+    let recipes = data[2].recipes
     let searchResult = filterRecipeTag(selectedTag, recipes)
+    console.log(searchResult)
     updateRecipeDataModel(searchResult)
     searchResult = renderSearchResults(searchResult)
     populateSearchResults(searchResult)
@@ -51,7 +64,9 @@ tagSection.addEventListener('click', (event) =>{
   }
 });
 searchButton.addEventListener('click',()=>{
-  const tags = renderFilterTags()
+  let recipes = data[2].recipes
+  let tags = getTagsFromData(recipes)
+  tags = renderFilterTags(tags)
   populateTags(tags)
   hideElements([searchButtonTag, navBar])
   showElements([navBarTags, searchField, backButton])
@@ -82,12 +97,9 @@ favsButton.addEventListener('click', ()=>{
   hideElements([defaultMain,recipeView])
   showElements([searchMain])
 });
-// searchMain.addEventListener('click', (event)=>{
-//   let element = event.target;
-//   console.log(element.innerText)
-//   //set the clicked element as a parameter for some navigation target
+addtoFavorites.addEventListener('click', () => {
 
-// })
+
 backButton.addEventListener('click', () => {
   hideElements([navBarTags, searchField, backButton, searchMain, recipeView])
   showElements([searchButtonTag, navBar, defaultMain])
@@ -133,7 +145,7 @@ function populateTags(tags){
     
 };
 
-function renderFilterTags(search = dataModel.tags){
+function renderFilterTags(search){
   let toPrint = search.map(element => {
     element = `<li>
     <button>${element}</button>
@@ -143,6 +155,50 @@ function renderFilterTags(search = dataModel.tags){
   return toPrint
 };
 
+function renderRecipePage(recipe, ingredientList){
+  recipeView.innerHTML = ''
+  let ingredientsString = ''
+  let ingredientsStrings = findRecipeIngredients(recipe,ingredientList)
+  
+    ingredientsStrings.forEach((ingredient, i) => {
+    ingredientsString+=`
+      <li>${ingredient.name}: ${recipe["ingredients"][i].quantity.amount} ${recipe["ingredients"][i].quantity.unit}</li>` 
+  });
+  let instructionsString = ''
+  let instructionsStrings = getRecipeInstructions(recipe)
+    instructionsStrings.forEach(instruction => {
+    instructionsString+=`
+      <li>${instruction.instruction}</li>`
+  });
+  console.log(ingredientsString, instructionsString)
+  
+  recipeView.innerHTML+= `<h1 class="recipe-name">${recipe.name}</h1>
+  <img class="recipe-image" src="${recipe.image}" alt="recipe-photo">
+  <div>
+  <h2 class="ingredients-label">Ingredients</h2>
+  <ul class="lists-display">
+  ${ingredientsString}
+  </ul>
+  </div>
+  <div>
+  <h2 class="directions-label">Directions</h2>
+  <ol class="lists-display">
+  ${instructionsString}
+  </ol>
+  </div>`
+  };
+
+let getRandomIndex = (array) =>{
+    return Math.floor(Math.random() * array.length)
+}
+
+function getRandomUser(data){
+  let user = data[0].users
+  let randomIndex = getRandomIndex(user)
+  let  randomUser = user[randomIndex]
+     currUser = randomUser
+  currentUser.innerHTML = randomUser.name + '!'
+}
 function filterTagsOnSubmit(input, allTags = dataModel.tags) {
   let filteredTags = allTags.filter((tag) => {
     return input === tag
@@ -162,6 +218,10 @@ function filterTagsOnSubmit(input, allTags = dataModel.tags) {
 // }
 
 
-// export {
-//   displayRecipes,
-// }
+function renderSavedRecipes (recipe) {
+  // when the user saves a recipe it goes to their needToCook array. this is then the the needToCook array is then
+ let currentUser = currUser
+console.log('userForNow',currentUser)
+
+}
+renderSavedRecipes()

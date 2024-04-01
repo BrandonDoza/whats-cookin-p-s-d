@@ -1,9 +1,13 @@
-//Here is an example demonstrating logic separated that can be imported into the scripts and test files. Feel free to update this later! 
+// Here is an example demonstrating logic separated that can be imported into the scripts and test files. Feel free to update this later! 
 
-import {recipeData} from './data/recipes'
-const recipes = recipeData
-console.log(recipes)
+// import ingredientsData from './data/ingredients';
+// import {recipeData} from './data/recipes'
+// const recipes = recipeData
+// const ingredients = ingredientsData
+// console.log(recipes)
 
+const recipes = []
+const ingredients = []
 
 function getRecipeData(){
   return recipes;
@@ -34,7 +38,8 @@ function estimatedCostInCents(recipe, ingredientList) {
   }, 0)
   return total
 }
-function getTagsFromData(){
+function getTagsFromData(recipes){
+  console.log('hi',recipes)
   const tagsArray = []
   let tags = recipes.map(recipe => recipe.tags)
   tags.forEach(subArray => {

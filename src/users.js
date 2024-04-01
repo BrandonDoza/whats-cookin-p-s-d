@@ -1,6 +1,15 @@
 import { use } from "chai";
 import { filterRecipeName, filterRecipeTag } from "./recipes";
 
+const createUser = (name, id, recipesToCook) => {
+    let user = {
+     name,
+     id, 
+    recipesToCook
+    }
+    return user
+} 
+
 const addRecipeToCook = (recipe, user) =>{
     user.recipesToCook.push(recipe)
 
@@ -19,12 +28,14 @@ const filterUserRecipesByTag = (tag, user) => {
 };
 
 const filterUserRecipesByName = (name, user) => {
+    console.log(user)
     const result = [filterRecipeName(name, user.recipesToCook)]
     return result
 
 };
 
 export{
+    createUser,
     addRecipeToCook,
     removeRecipeToCook,
     filterUserRecipesByTag,

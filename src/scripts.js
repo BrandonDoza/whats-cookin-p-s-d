@@ -10,8 +10,7 @@ import { findRecipeIngredients, getTagsFromData} from './recipes';
 import { displayRecipes } from './domUpdates'
 
 export var dataModel = {
-    currentRecipes : [],
-    tags: getTagsFromData()
+    currentRecipes : []
 };
 export function updateRecipeDataModel(searchResult){
     dataModel.currentRecipes = searchResult
