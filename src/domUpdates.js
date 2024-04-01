@@ -1,6 +1,6 @@
 
 import { getDataArray } from "./apiCalls"
-import { filterRecipeTag, findRecipeIngredients, getRecipeInstructions, getTagsFromData} from "./recipes"
+import { filterRecipeTag, findRecipeIngredients, getRecipeInstructions, getTagsFromData, filterRecipeName} from "./recipes"
 import { dataModel, updateRecipeDataModel } from "./scripts"
 import { addRecipeToCook } from "./users"
 
@@ -98,7 +98,7 @@ favsButton.addEventListener('click', ()=>{
   showElements([searchMain])
 });
 addtoFavorites.addEventListener('click', () => {
-
+})
 
 backButton.addEventListener('click', () => {
   hideElements([navBarTags, searchField, backButton, searchMain, recipeView])
@@ -199,29 +199,29 @@ function getRandomUser(data){
      currUser = randomUser
   currentUser.innerHTML = randomUser.name + '!'
 }
-function filterTagsOnSubmit(input, allTags = dataModel.tags) {
-  let filteredTags = allTags.filter((tag) => {
-    return input === tag
-  })
-  .map((element) => {
-    element = `<li>
-    <button>${element}</button>
-    </li>`
-    return element
-  })
-  console.log('hello', filteredTags)
-  return filteredTags
-}
+// function filterTagsOnSubmit(input, allTags = dataModel.tags) {
+//   let filteredTags = allTags.filter((tag) => {
+//     return input === tag
+//   })
+//   .map((element) => {
+//     element = `<li>
+//     <button>${element}</button>
+//     </li>`
+//     return element
+//   })
+//   console.log('hello', filteredTags)
+//   return filteredTags
+// }
+
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 // const displayRecipes = () => {
 //   console.log(`Displaying recipes now`)
 // }
 
 
-function renderSavedRecipes (recipe) {
-  // when the user saves a recipe it goes to their needToCook array. this is then the the needToCook array is then
- let currentUser = currUser
-console.log('userForNow',currentUser)
+// function renderSavedRecipes (recipe) {
+//   // when the user saves a recipe it goes to their needToCook array. this is then the the needToCook array is then
+//  let currentUser = currUser
+// console.log('userForNow',currentUser)
 
-}
-renderSavedRecipes()
+// }
