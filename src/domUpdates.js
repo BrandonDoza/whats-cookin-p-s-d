@@ -1,6 +1,7 @@
 
 import { getDataArray } from "./apiCalls"
 import { filterRecipeTag, findRecipeIngredients, getRecipeInstructions, getTagsFromData, filterRecipeName} from "./recipes"
+// import {addRecipeToCook} from './users'
 import { dataModel, updateRecipeDataModel } from "./scripts"
 import { addRecipeToCook } from "./users"
 
@@ -24,18 +25,23 @@ const submitButton = document.getElementById('submit-button')
 const currentUser = document.querySelector(".current-user")
 const data = getDataArray()
 const addtoFavorites = document.querySelector('.fav-add')
-let currUser;
+
 // const submitButton = document.getElementById('submit-button')
 const backButton = document.getElementById('back-button')
 
-
+// let currUser;
 document.addEventListener('DOMContentLoaded', function(){
+  
   setTimeout(()=>{
     let user = data[0].users
-
+    console.log('user', user)
     hideElements([landingPage])
     let randomUser = getRandomUser(user)
-    dataModel.currentUser = user[randomUser]
+    console.log('rand', randomUser)
+    dataModel.currentUser = randomUser
+    // dataModel.currentUser = user[randomUser]
+    // currUser = dataModel.currentUser
+    // console.log('user', currUser)
     showElements([mainPage])
  },1500)
 });
@@ -44,7 +50,7 @@ searchMain.addEventListener('click', (event) =>{
   const element = event.target.parentElement.id;
   if(element){
     let ingredientList = data[1].ingredients
-    console.log('hello', dataModel.currentRecipes[element])
+    dataModel.currentRecipe = dataModel.currentRecipes[element])
     renderRecipePage(dataModel.currentRecipes[element], ingredientList)
     hideElements([searchMain])
     showElements([recipeView])
@@ -66,6 +72,17 @@ tagSection.addEventListener('click', (event) =>{
     showElements([searchMain])
   }
 });
+
+recipeView.addEventListener('click', (event) => {
+  const element = event.target
+  // console.log(element)
+  if (element.classList.contains('fav-button')){
+    console.log("Yessir")
+    addRecipeToCook(dataModel.currentRecipe, dataModel.currentUser )
+    console.log('cur', currUser)
+  }
+  return currUser
+})
 searchButton.addEventListener('click',()=>{
   console.log('user', dataModel.currentUser)
   let recipes = data[2].recipes
@@ -74,6 +91,7 @@ searchButton.addEventListener('click',()=>{
   populateTags(tags)
   hideElements([searchButtonTag, navBar])
   showElements([navBarTags, searchField, backButton])
+  // console.log('searchuser', currUser)
 });
 // submitButton.addEventListener('click',()=>{
 //   let searchInput = searchField.value
@@ -189,7 +207,8 @@ function renderRecipePage(recipe, ingredientList){
   <ol class="lists-display">
   ${instructionsString}
   </ol>
-  </div>`
+  </div>
+  <button class="buttons fav-button">Favorite</button>`
   };
 
 let getRandomIndex = (array) =>{
@@ -201,8 +220,11 @@ function getRandomUser(user){
   let randomUser = user[randomIndex]
      currUser = randomUser
   currentUser.innerHTML = randomUser.name + '!'
-  return randomIndex
+  console.log('here', currUser)
+  return currUser
 }
+
+
 // function filterTagsOnSubmit(input, allTags = dataModel.tags) {
 //   let filteredTags = allTags.filter((tag) => {
 //     return input === tag
