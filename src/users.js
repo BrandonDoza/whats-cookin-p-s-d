@@ -11,8 +11,9 @@ const createUser = (name, id, recipesToCook) => {
 } 
 
 const addRecipeToCook = (recipe, user) =>{
+    if (!user.recipesToCook.includes(recipe)){
     user.recipesToCook.push(recipe)
-
+    }
     return user
 };
 function removeRecipeToCook (recipe, user){
