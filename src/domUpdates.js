@@ -2,6 +2,7 @@
 import { getDataArray } from "./apiCalls"
 import { filterRecipeTag, findRecipeIngredients, getRecipeInstructions, getTagsFromData} from "./recipes"
 import { dataModel, updateRecipeDataModel } from "./scripts"
+import { addRecipeToCook } from "./users"
 
 //NOTE: Your DOM manipulation will occur in this file
 
@@ -18,9 +19,10 @@ const searchButton = document.getElementById('search-button')
 const favsButton = document.getElementById('favs-button')
 const searchButtonTag = document.getElementById('search-button-for-tags-view')
 const submitButton = document.getElementById('submit-button')
-let currentUser = document.querySelector(".current-user")
+const currentUser = document.querySelector(".current-user")
 const data = getDataArray()
 const addtoFavorites = document.querySelector('.fav-add')
+let currUser;
 
 document.addEventListener('DOMContentLoaded', function(){
   setTimeout(()=>{
@@ -71,7 +73,7 @@ favsButton.addEventListener('click', ()=>{
   showElements([searchMain])
 });
 addtoFavorites.addEventListener('click', () => {
-  
+
 })
 
 function hideElements(elementArray){
@@ -164,8 +166,14 @@ function getRandomUser(data){
   let user = data[0].users
   let randomIndex = getRandomIndex(user)
   let  randomUser = user[randomIndex]
-     console.log('random',randomUser)
+     currUser = randomUser
   currentUser.innerHTML = randomUser.name + '!'
 }
 
-function 
+function renderSavedRecipes (recipe) {
+  // when the user saves a recipe it goes to their needToCook array. this is then the the needToCook array is then
+ let currentUser = currUser
+console.log('userForNow',currentUser)
+
+}
+renderSavedRecipes()
