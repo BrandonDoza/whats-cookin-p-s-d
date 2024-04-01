@@ -92,7 +92,10 @@ body {
 
 .after-tag-click-sidebar-display {
   background-color: var(--secondary-color);
+  color: var (--liver-containers);
   height: 500px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .tags-section {

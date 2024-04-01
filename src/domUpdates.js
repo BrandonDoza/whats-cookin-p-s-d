@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function(){
  setTimeout(()=>{
     hideElements([landingPage])
     showElements([mainPage])
- },2000)
+ },1500)
 });
 searchMain.addEventListener('click', (event) =>{
   const element = event.target.parentElement.id;
