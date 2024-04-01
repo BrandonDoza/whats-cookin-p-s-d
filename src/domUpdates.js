@@ -31,8 +31,11 @@ const backButton = document.getElementById('back-button')
 
 document.addEventListener('DOMContentLoaded', function(){
   setTimeout(()=>{
+    let user = data[0].users
+
     hideElements([landingPage])
-    getRandomUser(data)
+    let randomUser = getRandomUser(user)
+    dataModel.currentUser = user[randomUser]
     showElements([mainPage])
  },1500)
 });
@@ -64,6 +67,7 @@ tagSection.addEventListener('click', (event) =>{
   }
 });
 searchButton.addEventListener('click',()=>{
+  console.log('user', dataModel.currentUser)
   let recipes = data[2].recipes
   let tags = getTagsFromData(recipes)
   tags = renderFilterTags(tags)
@@ -78,7 +82,7 @@ searchButton.addEventListener('click',()=>{
 //   searchField.value = ''
 // });
 searchField.addEventListener('input', () => {
-  let recipes = getRecipeData()
+  let recipes = data[2].recipes
   let recipesToLower = recipes.map((recipe) => {
     return { ...recipe, name: recipe.name.toLowerCase() }
   })
@@ -192,12 +196,12 @@ let getRandomIndex = (array) =>{
     return Math.floor(Math.random() * array.length)
 }
 
-function getRandomUser(data){
-  let user = data[0].users
+function getRandomUser(user){
   let randomIndex = getRandomIndex(user)
-  let  randomUser = user[randomIndex]
+  let randomUser = user[randomIndex]
      currUser = randomUser
   currentUser.innerHTML = randomUser.name + '!'
+  return randomIndex
 }
 // function filterTagsOnSubmit(input, allTags = dataModel.tags) {
 //   let filteredTags = allTags.filter((tag) => {
