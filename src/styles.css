@@ -207,16 +207,16 @@ li {
   display: none;
 }
 
-.lists-display > li{
+.lists-display > li {
   margin: 5px;
 }
 
-.recipe-view > img{
+.recipe-view > img {
   align-self: center;
   width: 200px;
 }
 
-.after-tag-search-view > div{
+.after-tag-search-view > div {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -224,7 +224,7 @@ li {
   margin: 10px;
 }
 
-.after-tag-search-view > div > img{
+.after-tag-search-view > div > img {
   align-self: center;
   width: 200px;
 }
