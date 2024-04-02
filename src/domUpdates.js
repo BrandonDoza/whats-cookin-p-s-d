@@ -77,7 +77,7 @@ searchButton.addEventListener("click", () => {
   updateRecipeDataModel(allRecipes);
   allRecipes = renderSearchResults(allRecipes);
   populateSearchResults(allRecipes);
-  hideElements([searchButtonTag, navBar, defaultMain]);
+  hideElements([searchButtonTag, navBar, defaultMain, recipeView]);
   showElements([navBarTags, searchField, backButton, searchMain]);
 });
 
