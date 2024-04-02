@@ -31,5 +31,6 @@ function getData (promises){
 }
 
 export function getDataArray(){
+    console.log('dataarray', dataArray)
     return dataArray
 }

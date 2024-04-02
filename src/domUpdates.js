@@ -53,6 +53,7 @@ tagSection.addEventListener('click', (event) =>{
   if(!element.classList.contains('tags-section')){
     const selectedTag = element.innerText
     let recipes = data[2].recipes
+    console.log('data2.recipes', data[2].recipes)
     let searchResult = filterRecipeTag(selectedTag, recipes)
     console.log(searchResult)
     updateRecipeDataModel(searchResult)
@@ -77,8 +78,13 @@ searchButton.addEventListener('click',()=>{
   let tags = getTagsFromData(recipes)
   tags = renderFilterTags(tags)
   populateTags(tags)
-  hideElements([searchButtonTag, navBar])
-  showElements([navBarTags, searchField, backButton])
+  let allRecipes = data[2].recipes
+  console.log('all', allRecipes)
+  updateRecipeDataModel(allRecipes)
+  allRecipes = renderSearchResults(allRecipes)
+  populateSearchResults(allRecipes)
+  hideElements([searchButtonTag, navBar, defaultMain])
+  showElements([navBarTags, searchField, backButton, searchMain])
 });
 
 searchField.addEventListener('input', () => {
