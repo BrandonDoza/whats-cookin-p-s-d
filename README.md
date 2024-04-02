@@ -12,7 +12,7 @@ npm start
 Do not run `npm audit fix --force`, as this will update to an imcopatible version of web-pack.
 
 ## On Running Tests:
-The testing libraries will already be installed by the set up, however; you will want to navigate into src/recipes.js and uncomment lines 1 - 4, and then comment out lines 7 & 8. These data imports and get functions were replaced by references to an api call done outside recipes in the final version. The tests do not use api data to run, instead they use mock data that is indetical in form factor to the api data. 
+The testing libraries will already be installed by the set up, however; you will want to navigate into src/recipes.js and comment out lines 1 - 4, and then un-comment line 6 to import the mock data. These data imports and get functions were replaced by references to an api call done outside recipes in the final version. The tests do not use api data to run, instead they use mock data that is indetical in form factor to the api data. 
 
 ## App Preview:
 

@@ -1,78 +1,76 @@
-// import ingredientsData from './data/ingredients';
-// import {recipeData} from './data/recipes'
-// const recipes = recipeData
-// const ingredients = ingredientsData
+import ingredientsData from "./data/ingredients";
+import { recipeData } from "./data/recipes";
+const recipes = recipeData;
+const ingredients = ingredientsData;
 
-const recipes = []
-const ingredients = []
+// import { ingredients, recipes, users } from '../test/mock-data';
 
-function getRecipeData(){
+function getRecipeData() {
   return recipes;
-};
-function getIngredientsData(){
+}
+function getIngredientsData() {
   return ingredients;
-};
-function getRecipeInstructions(recipe){
+}
+function getRecipeInstructions(recipe) {
   return recipe["instructions"];
 }
-function findRecipeIngredients(recipe, ingredients){
-  const results = recipe['ingredients'].map((element) =>{
-      let match = ingredients.find(({id}) => id === element['id'])
-      if (match !== undefined){
-          return match
-      };
+function findRecipeIngredients(recipe, ingredients) {
+  const results = recipe["ingredients"].map((element) => {
+    let match = ingredients.find(({ id }) => id === element["id"]);
+    if (match !== undefined) {
+      return match;
+    }
   });
-  return results
-  };
+  return results;
+}
 
 function estimatedCostInCents(recipe, ingredientList) {
   const total = recipe.ingredients.reduce((acc, ingredient) => {
-      const matchingIngredient = ingredientList.find((item) => {
-          return item.id === ingredient.id
-      })
-      acc += matchingIngredient.estimatedCostInCents * ingredient.quantity.amount;
-      return acc
-  }, 0)
-  return total
+    const matchingIngredient = ingredientList.find((item) => {
+      return item.id === ingredient.id;
+    });
+    acc += matchingIngredient.estimatedCostInCents * ingredient.quantity.amount;
+    return acc;
+  }, 0);
+  return total;
 }
-function getTagsFromData(recipes){
-  console.log('hi',recipes)
-  const tagsArray = []
-  let tags = recipes.map(recipe => recipe.tags)
-  tags.forEach(subArray => {
-    subArray.forEach(element => {
-      if (!tagsArray.includes(element)){
-        tagsArray.push(element)
+function getTagsFromData(recipes) {
+  const tagsArray = [];
+  let tags = recipes.map((recipe) => recipe.tags);
+  tags.forEach((subArray) => {
+    subArray.forEach((element) => {
+      if (!tagsArray.includes(element)) {
+        tagsArray.push(element);
       }
     });
   });
-  return tagsArray
+  return tagsArray;
 }
-const filterRecipeTag = (tag,recipeData) => { 
+const filterRecipeTag = (tag, recipeData) => {
   let filterRecipes = recipeData.filter((recipe) => {
-     return recipe['tags'].includes(tag);
+    return recipe["tags"].includes(tag);
   });
-  console.log('hallo',filterRecipes)
-  let filteredRecipes = filterRecipes.reduce((acc, recipes) =>{
-      acc = recipes
-      return acc
-  }, {})
-  return filterRecipes
-}
+  let filteredRecipes = filterRecipes.reduce((acc, recipes) => {
+    acc = recipes;
+    return acc;
+  }, {});
+  return filterRecipes;
+};
 
 const filterRecipeName = (name, recipeData) => {
-let findRecipe = recipeData.filter((recipe) => {
-  return recipe['name'].includes(name)
-});
-return findRecipe
-}
+  let findRecipe = recipeData.filter((recipe) => {
+    return recipe["name"].includes(name);
+  });
+  return findRecipe;
+};
 
-export {getRecipeData,
+export {
+  getRecipeData,
   getIngredientsData,
-  getRecipeInstructions, 
-  estimatedCostInCents, 
-  filterRecipeName, 
+  getRecipeInstructions,
+  estimatedCostInCents,
+  filterRecipeName,
   filterRecipeTag,
   findRecipeIngredients,
-  getTagsFromData};
-
+  getTagsFromData,
+};
