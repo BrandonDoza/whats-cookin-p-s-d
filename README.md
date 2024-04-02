@@ -30,7 +30,6 @@ Brandon Doza: https://github.com/BrandonDoza
 The learning goals of the project were to solidify our understanding of integrating CSS, Javascript, and HTML, and how to simulteously manage input on the DOM and data model. We also learned basic GET request protocols to an API, and how to utilize that data to update our data model, and DOM. We worked with CSS, Javascript, and HTML to complete this project.
 
 ## Wins + Challenges:
-
 ### Win 1: Really leaning into the knowledge we have gained throughout out time at Turing to complete this project.
 ### Win 2: Learning a lot about our fellow teammates, everyones individual ideas, and how to come together to accomplish our goal.  
 ### Win 3: Our time management was laid out very well from the beginning, and allowed us extra time in the end to fix bugs and refactor our code. 
