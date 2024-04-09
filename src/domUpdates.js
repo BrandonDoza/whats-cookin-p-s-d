@@ -9,6 +9,7 @@ import {
 import { dataModel, updateRecipeDataModel } from "./scripts";
 import { addRecipeToCook } from "./users";
 
+//<><>query selectors<><>
 const landingPage = document.querySelector(".page-load");
 const mainPage = document.querySelector(".main");
 const navBar = document.querySelector(".after-load-side-bar-display");
@@ -26,6 +27,7 @@ const currentUser = document.querySelector(".current-user");
 const data = getDataArray();
 const backButton = document.getElementById("back-button");
 
+//<><>event listeners<><>
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     let user = data[0].users;
@@ -110,11 +112,13 @@ backButton.addEventListener("click", () => {
   showElements([searchButtonTag, navBar, defaultMain]);
 });
 
+//<><>event handlers<><>
 function hideElements(viewsArray) {
   viewsArray.forEach((view) => {
     view.classList.add("hidden");
   });
 }
+
 function showElements(viewsArray) {
   viewsArray.forEach((view) => {
     view.classList.remove("hidden");
@@ -160,7 +164,6 @@ function renderRecipePage(recipe, ingredientList) {
   recipeView.innerHTML = "";
   let ingredientsString = "";
   let ingredientsStrings = findRecipeIngredients(recipe, ingredientList);
-
   ingredientsStrings.forEach((ingredient, i) => {
     ingredientsString += `
       <li>${ingredient.name}: ${recipe["ingredients"][i].quantity.amount} ${recipe["ingredients"][i].quantity.unit}</li>`;
@@ -171,7 +174,6 @@ function renderRecipePage(recipe, ingredientList) {
     instructionsString += `
       <li>${instruction.instruction}</li>`;
   });
-
   recipeView.innerHTML += `<h1 class="recipe-name">${recipe.name}</h1>
   <img class="recipe-image" src="${recipe.image}" alt="recipe-photo">
   <div>
