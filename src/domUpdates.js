@@ -153,7 +153,7 @@ function populateTags(tags) {
 function renderFilterTags(search) {
   let toPrint = search.map((tag) => {
     tag = `<li>
-    <button>${tag}</button>
+    <button class="tag-buttons">${tag}</button>
     </li>`;
     return tag;
   });
@@ -176,18 +176,14 @@ function renderRecipePage(recipe, ingredientList) {
   });
   recipeView.innerHTML += `<h1 class="recipe-name">${recipe.name}</h1>
   <img class="recipe-image" src="${recipe.image}" alt="recipe-photo">
-  <div>
   <h2 class="ingredients-label">Ingredients</h2>
   <ul class="lists-display">
   ${ingredientsString}
   </ul>
-  </div>
-  <div>
   <h2 class="directions-label">Directions</h2>
   <ol class="lists-display">
   ${instructionsString}
   </ol>
-  </div>
   <button class="buttons fav-button">Favorite</button>`;
 }
 

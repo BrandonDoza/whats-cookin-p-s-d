@@ -45,10 +45,10 @@ body {
 
 .side-bar {
   background-color: var(--secondary-color);
-  width: 30%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 30%;
+  min-height: 100vh;
 }
 
 .side-bar-heading {
@@ -91,11 +91,23 @@ body {
   margin: 25px;
 }
 
+.tag-buttons {
+  background-color: var(--coral-buttons);
+  color: var(--liver-containers);
+  font-size: small;
+  font-weight: 800;
+  width: 100px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 25px;
+}
+
 .after-tag-click-sidebar-display {
   background-color: var(--secondary-color);
   color: var (--liver-containers);
   height: 500px;
   text-align: center;
+  font-size: larger;
   margin-top: 10px;
 }
 
@@ -171,7 +183,7 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 70%;
   height: 100%;
 }
 
@@ -200,7 +212,7 @@ li {
   padding-right: 50px;
   padding-top: 0;
   padding-bottom: 0;
-  width: 100%;
+  width: 70%;
 }
 
 .hidden {
