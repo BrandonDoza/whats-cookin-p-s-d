@@ -37,20 +37,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 searchMain.addEventListener("click", (event) => {
-  const element = event.target.parentElement.id;
-  if (element) {
+  const recipeElement = event.target.parentElement.id;
+  if (recipeElement) {
     let ingredientList = data[1].ingredients;
-    dataModel.currentRecipe = dataModel.currentRecipes[element];
-    renderRecipePage(dataModel.currentRecipes[element], ingredientList);
+    dataModel.currentRecipe = dataModel.currentRecipes[recipeElement];
+    renderRecipePage(dataModel.currentRecipes[recipeElement], ingredientList);
     hideElements([searchMain]);
     showElements([recipeView]);
   }
 });
 
 tagSection.addEventListener("click", (event) => {
-  const element = event.target;
-  if (!element.classList.contains("tags-section")) {
-    const selectedTag = element.innerText;
+  const tag = event.target;
+  if (!tag.classList.contains("tags-section")) {
+    const selectedTag = tag.innerText;
     let recipes = data[2].recipes;
     let searchResult = filterRecipeTag(selectedTag, recipes);
     updateRecipeDataModel(searchResult);
@@ -62,8 +62,8 @@ tagSection.addEventListener("click", (event) => {
 });
 
 recipeView.addEventListener("click", (event) => {
-  const element = event.target;
-  if (element.classList.contains("fav-button")) {
+  const faveButton = event.target;
+  if (faveButton.classList.contains("fav-button")) {
     addRecipeToCook(dataModel.currentRecipe, dataModel.currentUser);
   }
 });
@@ -87,8 +87,8 @@ searchField.addEventListener("input", () => {
     return { ...recipe, name: recipe.name.toLowerCase() };
   });
   let searchInput = searchField.value;
-  let searchInputLower = searchInput.toLowerCase();
-  let searchResult = filterRecipeName(searchInputLower, recipesToLower);
+  let searchInputToLower = searchInput.toLowerCase();
+  let searchResult = filterRecipeName(searchInputToLower, recipesToLower);
   updateRecipeDataModel(searchResult);
   searchResult = renderSearchResults(searchResult);
   populateSearchResults(searchResult);
@@ -110,31 +110,31 @@ backButton.addEventListener("click", () => {
   showElements([searchButtonTag, navBar, defaultMain]);
 });
 
-function hideElements(elementArray) {
-  elementArray.forEach((element) => {
-    element.classList.add("hidden");
+function hideElements(viewsArray) {
+  viewsArray.forEach((view) => {
+    view.classList.add("hidden");
   });
 }
-function showElements(elementArray) {
-  elementArray.forEach((element) => {
-    element.classList.remove("hidden");
+function showElements(viewsArray) {
+  viewsArray.forEach((view) => {
+    view.classList.remove("hidden");
   });
 }
 
-function populateSearchResults(searchResult) {
+function populateSearchResults(searchResults) {
   searchMain.innerHTML = "";
-  searchResult.forEach((element) => {
-    searchMain.innerHTML += element;
+  searchResults.forEach((result) => {
+    searchMain.innerHTML += result;
   });
 }
 
 function renderSearchResults(recipes) {
-  let toPrint = recipes.map((element, i) => {
-    element = `<div id = ${i}>
-            <img src="${element.image}" alt="${element.name}" />
-            <p>${element.name}</p>
+  let toPrint = recipes.map((recipe, i) => {
+    recipe = `<div id = ${i}>
+            <img src="${recipe.image}" alt="${recipe.name}" />
+            <p>${recipe.name}</p>
       </div>`;
-    return element;
+    return recipe;
   });
   return toPrint;
 }
@@ -147,11 +147,11 @@ function populateTags(tags) {
 }
 
 function renderFilterTags(search) {
-  let toPrint = search.map((element) => {
-    element = `<li>
-    <button>${element}</button>
+  let toPrint = search.map((tag) => {
+    tag = `<li>
+    <button>${tag}</button>
     </li>`;
-    return element;
+    return tag;
   });
   return toPrint;
 }
@@ -193,9 +193,9 @@ let getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length);
 };
 
-function getRandomUser(user) {
-  let randomIndex = getRandomIndex(user);
-  let randomUser = user[randomIndex];
+function getRandomUser(users) {
+  let randomIndex = getRandomIndex(users);
+  let randomUser = users[randomIndex];
   dataModel.currentUser = randomUser;
   currentUser.innerHTML = randomUser.name + "!";
   return randomUser;
