@@ -5,15 +5,19 @@ const ingredients = ingredientsData;
 
 // import { ingredients, recipes, users } from '../test/mock-data';
 
+//<><>functions<><>
 function getRecipeData() {
   return recipes;
 }
+
 function getIngredientsData() {
   return ingredients;
 }
+
 function getRecipeInstructions(recipe) {
   return recipe["instructions"];
 }
+
 function findRecipeIngredients(recipe, ingredients) {
   const results = recipe["ingredients"].map((element) => {
     let match = ingredients.find(({ id }) => id === element["id"]);
@@ -34,6 +38,7 @@ function estimatedCostInCents(recipe, ingredientList) {
   }, 0);
   return total;
 }
+
 function getTagsFromData(recipes) {
   const tagsArray = [];
   let tags = recipes.map((recipe) => recipe.tags);
@@ -46,6 +51,7 @@ function getTagsFromData(recipes) {
   });
   return tagsArray;
 }
+
 const filterRecipeTag = (tag, recipeData) => {
   let filterRecipes = recipeData.filter((recipe) => {
     return recipe["tags"].includes(tag);

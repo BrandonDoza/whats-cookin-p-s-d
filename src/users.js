@@ -1,6 +1,7 @@
 import { use } from "chai";
 import { filterRecipeName, filterRecipeTag } from "./recipes";
 
+//<><>functions<><>
 const createUser = (name, id, recipesToCook) => {
   let user = {
     name,
@@ -16,6 +17,7 @@ const addRecipeToCook = (recipe, user) => {
   }
   return user;
 };
+
 function removeRecipeToCook(recipe, user) {
   let toRemove = user.recipesToCook.findIndex(
     (element) => element.name === recipe.name
