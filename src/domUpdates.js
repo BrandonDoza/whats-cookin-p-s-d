@@ -7,7 +7,7 @@ import {
   filterRecipeName,
 } from "./recipes";
 import { dataModel, updateRecipeDataModel } from "./scripts";
-import { addRecipeToCook } from "./users";
+import { addRecipeToCook, removeRecipeToCook } from "./users";
 
 //<><>query selectors<><>
 const landingPage = document.querySelector(".page-load");
@@ -48,6 +48,7 @@ searchMain.addEventListener("click", (event) => {
     showElements([recipeView]);
   }
 });
+
 
 tagSection.addEventListener("click", (event) => {
   const tag = event.target;
@@ -112,10 +113,22 @@ backButton.addEventListener("click", () => {
   showElements([searchButtonTag, navBar, defaultMain]);
 });
 
+
+searchMain.addEventListener("dblclick", (event) => {
+  let faveRecipes = dataModel.currentUser.recipesToCook
+  let user = dataModel.currentUser
+  const element = event.target.closest('div')
+  if (element){
+    element.remove();
+    removeRecipeToCook(faveRecipes, user)
+  }
+})
+
 //<><>event handlers<><>
-function hideElements(viewsArray) {
-  viewsArray.forEach((view) => {
-    view.classList.add("hidden");
+function hideElements(elementArray) {
+  elementArray.forEach((element) => {
+    element.classList.add("hidden");
+
   });
 }
 
