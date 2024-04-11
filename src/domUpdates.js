@@ -1,4 +1,4 @@
-import { getDataArray } from "./apiCalls";
+import { getDataArray, addUserRecipe, addUserRecipesToAPI } from "./apiCalls";
 import {
   filterRecipeTag,
   findRecipeIngredients,
@@ -31,9 +31,11 @@ const backButton = document.getElementById("back-button");
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     let user = data[0].users;
+    // console.log(data)
     hideElements([landingPage]);
     let randomUser = getRandomUser(user);
     dataModel.currentUser = randomUser;
+    console.log('curUser', dataModel.currentUser)
     showElements([mainPage]);
   }, 1500);
 });
@@ -67,6 +69,11 @@ recipeView.addEventListener("click", (event) => {
   const faveButton = event.target;
   if (faveButton.classList.contains("fav-button")) {
     addRecipeToCook(dataModel.currentRecipe, dataModel.currentUser);
+    addUserRecipesToAPI(dataModel.currentUser, dataModel.currentRecipe)
+    .then(resp => {
+      console.log('resp', resp)
+      faveButton.innerText = resp.message
+    })
   }
 });
 

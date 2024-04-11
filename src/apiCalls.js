@@ -1,17 +1,17 @@
 import { use } from "chai";
 
 const users = () =>
-  fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users").then(
+  fetch("http://localhost:3001/api/v1/users").then(
     (response) => response.json()
   );
 
 const ingredients = () =>
   fetch(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
+    "http://localhost:3001/api/v1/ingredients"
   ).then((response) => response.json());
 
 const recipes = () =>
-  fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes").then(
+  fetch("http://localhost:3001/api/v1/recipes").then(
     (response) => response.json()
   );
 
@@ -29,9 +29,29 @@ function getData(promises) {
   promises.forEach((element) => {
     dataArray.push(element);
   });
+  console.log(dataArray)
   return dataArray;
 }
 
 export function getDataArray() {
   return dataArray;
+}
+
+export const addUserRecipesToAPI = (currentUser, currentRecipe)=> {
+  return fetch('http://localhost:3001/api/v1/usersRecipes', {
+    method: 'POST',
+        body: JSON.stringify({ userID: currentUser.id, recipeID: currentRecipe.id}),
+        headers: {
+            "content-type": 'application/json'
+  }
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error(Error)
+  } else {
+    console.log('ther', response)
+    return response.json()
+  }
+})
+.catch(err => console.log(err))
 }
