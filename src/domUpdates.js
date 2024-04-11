@@ -7,7 +7,7 @@ import {
   filterRecipeName,
 } from "./recipes";
 import { dataModel, updateRecipeDataModel } from "./scripts";
-import { addRecipeToCook } from "./users";
+import { addRecipeToCook, removeRecipeToCook } from "./users";
 
 const landingPage = document.querySelector(".page-load");
 const mainPage = document.querySelector(".main");
@@ -113,19 +113,11 @@ backButton.addEventListener("click", () => {
 
 searchMain.addEventListener("dblclick", (event) => {
   let faveRecipes = dataModel.currentUser.recipesToCook
+  let user = dataModel.currentUser
   const element = event.target.closest('div')
   if (element){
-    const id = parseInt(element.id);
     element.remove();
-    console.log(faveRecipes)
-    const indexToRemove = faveRecipes.findIndex(recipe => {
-      console.log('id:', id);
-      console.log('recipe.id:', recipe.id);
-      return recipe.id === id;
-    });        
-    if (indexToRemove !== -1) {
-            faveRecipes.splice(indexToRemove, 1);
-        }
+    removeRecipeToCook(faveRecipes, user)
   }
 })
 
