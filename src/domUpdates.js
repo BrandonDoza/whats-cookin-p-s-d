@@ -72,6 +72,7 @@ recipeView.addEventListener("click", (event) => {
 });
 
 searchButton.addEventListener("click", () => {
+  searchMain.classList.remove('favorites')
   let recipes = data[2].recipes;
   let tags = getTagsFromData(recipes);
   tags = renderFilterTags(tags);
@@ -100,6 +101,7 @@ searchField.addEventListener("input", () => {
 });
 
 favsButton.addEventListener("click", () => {
+  searchMain.classList.add('favorites')
   let favorites = dataModel.currentUser.recipesToCook;
   updateRecipeDataModel(favorites);
   favorites = renderSearchResults(favorites);
@@ -115,13 +117,16 @@ backButton.addEventListener("click", () => {
 
 
 searchMain.addEventListener("dblclick", (event) => {
-  let faveRecipes = dataModel.currentUser.recipesToCook
-  let user = dataModel.currentUser
-  const element = event.target.closest('div')
-  if (element){
-    element.remove();
-    removeRecipeToCook(faveRecipes, user)
-  }
+  if(searchMain.classList.contains('favorites')){
+    let faveRecipes = dataModel.currentUser.recipesToCook
+    let user = dataModel.currentUser
+    const element = event.target.closest('div')
+    console.log(element)
+    if (element){
+      element.remove();
+      removeRecipeToCook(faveRecipes, user)
+    }
+};
 })
 
 //<><>event handlers<><>
