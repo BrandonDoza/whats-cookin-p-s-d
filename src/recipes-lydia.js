@@ -1,25 +1,23 @@
-import { recipes } from '../test/mock-data';
-import{getRecipeData,getIngredientsData} from './recipes'
+import { recipes } from "../test/mock-data";
+import { getRecipeData, getIngredientsData } from "./recipes";
 
-const filterRecipeTag = (tag,recipeData) => { 
-    let filterRecipes = recipeData.filter((recipe) => {
-       return recipe['tags'].includes(tag);
-    });
-    let filteredRecipes = filterRecipes.reduce((acc, recipes) =>{
-        acc = recipes
-        return acc
-    }, {})
-    return filteredRecipes
-}
+const filterRecipeTag = (tag, recipeData) => {
+  let filterRecipes = recipeData.filter((recipe) => {
+    return recipe["tags"].includes(tag);
+  });
+  let filteredRecipes = filterRecipes.reduce((acc, recipes) => {
+    acc = recipes;
+    return acc;
+  }, {});
+  console.log(filteredRecipes);
+  return filteredRecipes;
+};
 
 const filterRecipeName = (name, recipeData) => {
   let findRecipe = recipeData.find((recipe) => {
-    return recipe['name'].includes(name)
+    return recipe["name"].includes(name);
   });
-  return findRecipe
-}
+  return findRecipe;
+};
 
-
-export  {filterRecipeTag, 
-    filterRecipeName
-}
+export { filterRecipeTag, filterRecipeName };

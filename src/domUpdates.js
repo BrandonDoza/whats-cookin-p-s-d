@@ -9,6 +9,7 @@ import {
 import { dataModel, updateRecipeDataModel } from "./scripts";
 import { addRecipeToCook, removeRecipeToCook } from "./users";
 
+//<><>query selectors<><>
 const landingPage = document.querySelector(".page-load");
 const mainPage = document.querySelector(".main");
 const navBar = document.querySelector(".after-load-side-bar-display");
@@ -26,6 +27,7 @@ const currentUser = document.querySelector(".current-user");
 const data = getDataArray();
 const backButton = document.getElementById("back-button");
 
+//<><>event listeners<><>
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     let user = data[0].users;
@@ -37,11 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 searchMain.addEventListener("click", (event) => {
-  const element = event.target.parentElement.id;
-  if (element) {
+  const recipeElement = event.target.parentElement.id;
+  if (recipeElement) {
     let ingredientList = data[1].ingredients;
-    dataModel.currentRecipe = dataModel.currentRecipes[element];
-    renderRecipePage(dataModel.currentRecipes[element], ingredientList);
+    dataModel.currentRecipe = dataModel.currentRecipes[recipeElement];
+    renderRecipePage(dataModel.currentRecipes[recipeElement], ingredientList);
     hideElements([searchMain]);
     showElements([recipeView]);
   }
@@ -49,9 +51,9 @@ searchMain.addEventListener("click", (event) => {
 
 
 tagSection.addEventListener("click", (event) => {
-  const element = event.target;
-  if (!element.classList.contains("tags-section")) {
-    const selectedTag = element.innerText;
+  const tag = event.target;
+  if (!tag.classList.contains("tags-section")) {
+    const selectedTag = tag.innerText;
     let recipes = data[2].recipes;
     let searchResult = filterRecipeTag(selectedTag, recipes);
     updateRecipeDataModel(searchResult);
@@ -63,8 +65,8 @@ tagSection.addEventListener("click", (event) => {
 });
 
 recipeView.addEventListener("click", (event) => {
-  const element = event.target;
-  if (element.classList.contains("fav-button")) {
+  const faveButton = event.target;
+  if (faveButton.classList.contains("fav-button")) {
     addRecipeToCook(dataModel.currentRecipe, dataModel.currentUser);
   }
 });
@@ -88,8 +90,8 @@ searchField.addEventListener("input", () => {
     return { ...recipe, name: recipe.name.toLowerCase() };
   });
   let searchInput = searchField.value;
-  let searchInputLower = searchInput.toLowerCase();
-  let searchResult = filterRecipeName(searchInputLower, recipesToLower);
+  let searchInputToLower = searchInput.toLowerCase();
+  let searchResult = filterRecipeName(searchInputToLower, recipesToLower);
   updateRecipeDataModel(searchResult);
   searchResult = renderSearchResults(searchResult);
   populateSearchResults(searchResult);
@@ -111,6 +113,7 @@ backButton.addEventListener("click", () => {
   showElements([searchButtonTag, navBar, defaultMain]);
 });
 
+
 searchMain.addEventListener("dblclick", (event) => {
   let faveRecipes = dataModel.currentUser.recipesToCook
   let user = dataModel.currentUser
@@ -121,31 +124,34 @@ searchMain.addEventListener("dblclick", (event) => {
   }
 })
 
+//<><>event handlers<><>
 function hideElements(elementArray) {
   elementArray.forEach((element) => {
     element.classList.add("hidden");
-  });
-}
-function showElements(elementArray) {
-  elementArray.forEach((element) => {
-    element.classList.remove("hidden");
+
   });
 }
 
-function populateSearchResults(searchResult) {
+function showElements(viewsArray) {
+  viewsArray.forEach((view) => {
+    view.classList.remove("hidden");
+  });
+}
+
+function populateSearchResults(searchResults) {
   searchMain.innerHTML = "";
-  searchResult.forEach((element) => {
-    searchMain.innerHTML += element;
+  searchResults.forEach((result) => {
+    searchMain.innerHTML += result;
   });
 }
 
 function renderSearchResults(recipes) {
-  let toPrint = recipes.map((element, i) => {
-    element = `<div id = ${i}>
-            <img src="${element.image}" alt="${element.name}" />
-            <p>${element.name}</p>
+  let toPrint = recipes.map((recipe, i) => {
+    recipe = `<div id = ${i}>
+            <img src="${recipe.image}" alt="${recipe.name}" />
+            <p>${recipe.name}</p>
       </div>`;
-    return element;
+    return recipe;
   });
   return toPrint;
 }
@@ -158,11 +164,11 @@ function populateTags(tags) {
 }
 
 function renderFilterTags(search) {
-  let toPrint = search.map((element) => {
-    element = `<li>
-    <button>${element}</button>
+  let toPrint = search.map((tag) => {
+    tag = `<li>
+    <button class="tag-buttons">${tag}</button>
     </li>`;
-    return element;
+    return tag;
   });
   return toPrint;
 }
@@ -171,7 +177,6 @@ function renderRecipePage(recipe, ingredientList) {
   recipeView.innerHTML = "";
   let ingredientsString = "";
   let ingredientsStrings = findRecipeIngredients(recipe, ingredientList);
-
   ingredientsStrings.forEach((ingredient, i) => {
     ingredientsString += `
       <li>${ingredient.name}: ${recipe["ingredients"][i].quantity.amount} ${recipe["ingredients"][i].quantity.unit}</li>`;
@@ -182,21 +187,16 @@ function renderRecipePage(recipe, ingredientList) {
     instructionsString += `
       <li>${instruction.instruction}</li>`;
   });
-
   recipeView.innerHTML += `<h1 class="recipe-name">${recipe.name}</h1>
   <img class="recipe-image" src="${recipe.image}" alt="recipe-photo">
-  <div>
   <h2 class="ingredients-label">Ingredients</h2>
   <ul class="lists-display">
   ${ingredientsString}
   </ul>
-  </div>
-  <div>
   <h2 class="directions-label">Directions</h2>
   <ol class="lists-display">
   ${instructionsString}
   </ol>
-  </div>
   <button class="buttons fav-button">Favorite</button>`;
 }
 
@@ -204,9 +204,9 @@ let getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length);
 };
 
-function getRandomUser(user) {
-  let randomIndex = getRandomIndex(user);
-  let randomUser = user[randomIndex];
+function getRandomUser(users) {
+  let randomIndex = getRandomIndex(users);
+  let randomUser = users[randomIndex];
   dataModel.currentUser = randomUser;
   currentUser.innerHTML = randomUser.name + "!";
   return randomUser;

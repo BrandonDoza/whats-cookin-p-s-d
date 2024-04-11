@@ -1,10 +1,11 @@
-function findRecipeIngredients(recipe, ingredients){
-const results = recipe['ingredients'].map((element) =>{
-    let match = ingredients.find(({id}) => id === element['id'])
-    if (match !== undefined){
-        return match
-    };
-});
-return results
-};
-export {findRecipeIngredients};
+function findRecipeIngredients(recipe, ingredients) {
+  const results = recipe["ingredients"].map((ingredient) => {
+    let match = ingredients.find(({ id }) => id === ingredient["id"]);
+    if (!match) {
+      return match;
+    }
+  });
+  return results;
+}
+
+export { findRecipeIngredients };
