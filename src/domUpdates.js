@@ -47,6 +47,7 @@ searchMain.addEventListener("click", (event) => {
   }
 });
 
+
 tagSection.addEventListener("click", (event) => {
   const element = event.target;
   if (!element.classList.contains("tags-section")) {
@@ -109,6 +110,24 @@ backButton.addEventListener("click", () => {
   hideElements([navBarTags, searchField, backButton, searchMain, recipeView]);
   showElements([searchButtonTag, navBar, defaultMain]);
 });
+
+searchMain.addEventListener("dblclick", (event) => {
+  let faveRecipes = dataModel.currentUser.recipesToCook
+  const element = event.target.closest('div')
+  if (element){
+    const id = parseInt(element.id);
+    element.remove();
+    console.log(faveRecipes)
+    const indexToRemove = faveRecipes.findIndex(recipe => {
+      console.log('id:', id);
+      console.log('recipe.id:', recipe.id);
+      return recipe.id === id;
+    });        
+    if (indexToRemove !== -1) {
+            faveRecipes.splice(indexToRemove, 1);
+        }
+  }
+})
 
 function hideElements(elementArray) {
   elementArray.forEach((element) => {
