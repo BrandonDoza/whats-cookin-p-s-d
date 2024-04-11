@@ -15,7 +15,7 @@ describe("getRecipeData", () => {
     expect(getRecipeData).to.be.a("function");
   });
   it("Should return a array of objects indentical  to the referenced data", () => {
-    const recipeData = getRecipeData();
+    const recipeData = getRecipeData(recipes);
     expect(recipeData).to.deep.equal(recipes);
   });
 });
@@ -25,7 +25,7 @@ describe("getIngredientsData", () => {
     expect(getIngredientsData).to.be.a("function");
   });
   it("Should return a array of objects indentical  to the referenced data", () => {
-    const ingredientsData = getIngredientsData();
+    const ingredientsData = getIngredientsData(ingredients);
     expect(ingredientsData).to.deep.equal(ingredients);
   });
 });
@@ -35,7 +35,7 @@ describe("filterRecipeTag", () => {
     expect(filterRecipeTag).to.be.a("function");
   });
   it("Should return an array of recipes that match a given tag", () => {
-    const recipeData = getRecipeData();
+    const recipeData = getRecipeData(recipes);
     const tag = "lunch";
     const filteredRecipes = filterRecipeTag(tag, recipeData);
     const toCompare = recipeData[2];
@@ -48,7 +48,7 @@ describe("filterRecipeName", () => {
     expect(filterRecipeName).to.be.a("function");
   });
   it("Should return a recipe when given a name", () => {
-    const recipeData = getRecipeData();
+    const recipeData = getRecipeData(recipes);
     const name = "Pancakes";
     const searchResult = filterRecipeName(name, recipeData);
     const pancakes = recipes[0];
@@ -61,7 +61,7 @@ describe("getRecipeInstructions", () => {
     expect(getRecipeInstructions).to.be.a("function");
   });
   it("Should return a array of instructions objects from selected recipe", () => {
-    const recipeData = getRecipeData();
+    const recipeData = getRecipeData(recipes);
     const recipe = recipeData[0];
     const recipeInstructions = getRecipeInstructions(recipe);
     expect(recipeInstructions).to.deep.equal(recipe["instructions"]);
@@ -90,9 +90,9 @@ describe("Recipe", () => {
     expect(findRecipeIngredients).to.be.a("function");
   });
   it("Should take in a recipe object and an ingredients object array, and return an array of matches", () => {
-    const recipeData = getRecipeData();
+    const recipeData = getRecipeData(recipes);
     const recipe = recipeData[0];
-    const ingredientsData = getIngredientsData();
+    const ingredientsData = getIngredientsData(ingredients);
     const ingredientList = [
       ingredients[0],
       ingredients[1],
