@@ -27,9 +27,6 @@ describe("add recipe", () => {
       recipesToCook: [],
     };
   });
-  it("should be a function", () => {
-    expect(addRecipeToCook).to.be.a("function");
-  });
   it("should add a recipe to the users recipes to cook", () => {
     const recipe = recipes[0];
     const addRecipe = addRecipeToCook(recipe, user);
@@ -60,9 +57,6 @@ describe("remove recipe", () => {
       id: 1,
       recipesToCook: [],
     };
-  });
-  it("should be a function", () => {
-    expect(removeRecipeToCook).to.be.a("function");
   });
   it("should remove a given recipe from the recipes to cook array", () => {
     const recipe = recipes[0];
@@ -98,9 +92,6 @@ describe("filter users saved recipes by tag", () => {
       recipesToCook: [recipes[0], recipes[1], recipes[2]],
     };
   });
-  it("should be a function", () => {
-    expect(filterUserRecipesByTag).to.be.a("function");
-  });
   it("should filter users recipes by a given tag", () => {
     const filteredRecipes = filterUserRecipesByTag("lunch", user);
     expect(filteredRecipes).to.deep.equal([[recipes[2]]]);
@@ -115,9 +106,6 @@ describe("filter by name", () => {
       id: 1,
       recipesToCook: [recipes[0], recipes[1], recipes[2]],
     };
-  });
-  it("should be a function", () => {
-    expect(filterUserRecipesByName).to.be.a("function");
   });
   it("should filter recipes by a given name", () => {
     const filteredRecipes = filterUserRecipesByName("Pancakes", user);

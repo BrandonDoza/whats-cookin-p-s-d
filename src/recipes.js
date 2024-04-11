@@ -1,16 +1,9 @@
-import ingredientsData from "./data/ingredients";
-import { recipeData } from "./data/recipes";
-const recipes = recipeData;
-const ingredients = ingredientsData;
-
-// import { ingredients, recipes, users } from '../test/mock-data';
-
 //<><>functions<><>
-function getRecipeData() {
+function getRecipeData(recipes) {
   return recipes;
 }
 
-function getIngredientsData() {
+function getIngredientsData(ingredients) {
   return ingredients;
 }
 
