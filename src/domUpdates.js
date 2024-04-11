@@ -26,6 +26,17 @@ const searchButtonTag = document.getElementById("search-button-for-tags-view");
 const currentUser = document.querySelector(".current-user");
 const data = getDataArray();
 const backButton = document.getElementById("back-button");
+const clickTimer = {
+  setup(recipeElement){
+      this.timeout = setTimeout(() => {
+          selectSearchResult(recipeElement)
+      
+      }, 500);
+  },
+  clear(){
+      clearTimeout(this.timeout)
+  }
+};
 
 //<><>event listeners<><>
 document.addEventListener("DOMContentLoaded", function () {
@@ -41,11 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 searchMain.addEventListener("click", (event) => {
   const recipeElement = event.target.parentElement.id;
   if (recipeElement) {
-    let ingredientList = data[1].ingredients;
-    dataModel.currentRecipe = dataModel.currentRecipes[recipeElement];
-    renderRecipePage(dataModel.currentRecipes[recipeElement], ingredientList);
-    hideElements([searchMain]);
-    showElements([recipeView]);
+    clickTimer.setup(recipeElement)
   }
 });
 
@@ -117,6 +124,7 @@ backButton.addEventListener("click", () => {
 
 
 searchMain.addEventListener("dblclick", (event) => {
+  clickTimer.clear()
   if(searchMain.classList.contains('favorites')){
     let faveRecipes = dataModel.currentUser.recipesToCook
     let user = dataModel.currentUser
@@ -130,6 +138,13 @@ searchMain.addEventListener("dblclick", (event) => {
 })
 
 //<><>event handlers<><>
+function selectSearchResult(recipeElement){
+  let ingredientList = data[1].ingredients;
+  dataModel.currentRecipe = dataModel.currentRecipes[recipeElement];
+  renderRecipePage(dataModel.currentRecipes[recipeElement], ingredientList);
+  hideElements([searchMain]);
+  showElements([recipeView]);
+}
 function hideElements(elementArray) {
   elementArray.forEach((element) => {
     element.classList.add("hidden");
