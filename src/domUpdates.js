@@ -26,6 +26,7 @@ const searchButtonTag = document.getElementById("search-button-for-tags-view");
 const currentUser = document.querySelector(".current-user");
 const data = getDataArray();
 const backButton = document.getElementById("back-button");
+const backButton2 = document.getElementById("back-button2");
 
 //<><>event listeners<><>
 document.addEventListener("DOMContentLoaded", function () {
@@ -110,13 +111,18 @@ favsButton.addEventListener("click", () => {
   updateRecipeDataModel(favorites);
   favorites = renderSearchResults(favorites);
   populateSearchResults(favorites);
-  hideElements([defaultMain, recipeView]);
-  showElements([searchMain]);
+  hideElements([defaultMain, recipeView, favsButton]);
+  showElements([searchMain, backButton2]);
 });
 
 backButton.addEventListener("click", () => {
-  hideElements([navBarTags, searchField, backButton, searchMain, recipeView]);
+  hideElements([navBarTags, searchField, backButton, searchMain, recipeView, backButton2]);
   showElements([searchButtonTag, navBar, defaultMain]);
+});
+
+backButton2.addEventListener("click", () => {
+  hideElements([navBarTags, searchField, backButton2, searchMain, recipeView]);
+  showElements([searchButtonTag, navBar, defaultMain, favsButton]);
 });
 
 //<><>event handlers<><>
