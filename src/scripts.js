@@ -17,3 +17,4 @@ export var dataModel = {
 export function updateRecipeDataModel(searchResult) {
   dataModel.currentRecipes = searchResult;
 }
+
