@@ -53,18 +53,15 @@ export const addUserRecipesToAPI = (currentUser, currentRecipe)=> {
   }
 })
 .then(response => {
-  if (!response.ok) {
-    throw new Error(Error)
+  if (response.status === 422) {
+    throw new Error('Already Saved')
+  } else if (!response.ok) {
+    throw new Error('Server Error')
   } else {
-    console.log('ther', response)
     return response.json()
   }
 })
 .catch(err => {
-  if (err.status === 422) {
-    console.log('this is already a favorite')
-  } else {
-    console.log(err)
-  }
-})
+  throw err
+  })
 }

@@ -87,9 +87,11 @@ recipeView.addEventListener("click", (event) => {
     addRecipeToCook(dataModel.currentRecipe, dataModel.currentUser);
     addUserRecipesToAPI(dataModel.currentUser, dataModel.currentRecipe)
     .then(resp => {
-      faveButton.innerText = resp.message
+      faveButton.innerText = 'Recipe Saved'
     })
-    .catch(err => console.log('err', err.message))
+    .catch(err => {
+      faveButton.innerText = err.message;
+    })
   }
 });
 
