@@ -27,8 +27,21 @@ const currentUser = document.querySelector(".current-user");
 // const data = getDataArray();
 
 const backButton = document.getElementById("back-button");
+const clickTimer = {
+  setup(recipeElement){
+      this.timeout = setTimeout(() => {
+          selectSearchResult(recipeElement)
+      
+      }, 500);
+  },
+  clear(){
+      clearTimeout(this.timeout)
+  }
+};
+
 const backButton2 = document.getElementById("back-button2");
 let data;
+
 
 //<><>event listeners<><>
 document.addEventListener("DOMContentLoaded", function () {
@@ -59,11 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 searchMain.addEventListener("click", (event) => {
   const recipeElement = event.target.parentElement.id;
   if (recipeElement) {
-    let ingredientList = data[1].ingredients;
-    dataModel.currentRecipe = dataModel.currentRecipes[recipeElement];
-    renderRecipePage(dataModel.currentRecipes[recipeElement], ingredientList);
-    hideElements([searchMain]);
-    showElements([recipeView]);
+    clickTimer.setup(recipeElement)
   }
 });
 
@@ -97,6 +106,7 @@ recipeView.addEventListener("click", (event) => {
 });
 
 searchButton.addEventListener("click", () => {
+  searchMain.classList.remove('favorites')
   let recipes = data[2].recipes;
   let tags = getTagsFromData(recipes);
   tags = renderFilterTags(tags);
@@ -125,6 +135,7 @@ searchField.addEventListener("input", () => {
 });
 
 favsButton.addEventListener("click", () => {
+  searchMain.classList.add('favorites')
   let favorites = dataModel.currentUser.recipesToCook;
   updateRecipeDataModel(favorites);
   favorites = renderSearchResults(favorites);
@@ -145,16 +156,27 @@ backButton2.addEventListener("click", () => {
 
 
 searchMain.addEventListener("dblclick", (event) => {
-  let faveRecipes = dataModel.currentUser.recipesToCook
-  let user = dataModel.currentUser
-  const element = event.target.closest('div')
-  if (element){
-    element.remove();
-    removeRecipeToCook(faveRecipes, user)
-  }
+  clickTimer.clear()
+  if(searchMain.classList.contains('favorites')){
+    let faveRecipes = dataModel.currentUser.recipesToCook
+    let user = dataModel.currentUser
+    const element = event.target.closest('div')
+    console.log(element)
+    if (element){
+      element.remove();
+      removeRecipeToCook(faveRecipes, user)
+    }
+};
 })
 
 //<><>event handlers<><>
+function selectSearchResult(recipeElement){
+  let ingredientList = data[1].ingredients;
+  dataModel.currentRecipe = dataModel.currentRecipes[recipeElement];
+  renderRecipePage(dataModel.currentRecipes[recipeElement], ingredientList);
+  hideElements([searchMain]);
+  showElements([recipeView]);
+}
 function hideElements(elementArray) {
   elementArray.forEach((element) => {
     element.classList.add("hidden");
