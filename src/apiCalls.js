@@ -19,17 +19,24 @@ const promises = [users(), ingredients(), recipes()];
 
 let dataArray = [];
 
-Promise.all(promises)
-  .then((promises) => {
-    getData(promises);
+// Promise.all(promises)
+//   .then((promises) => {
+//     getData(promises);
+//   })
+//   .catch((err) => console.log("ERROR", err));
+
+  export function getAllData() {
+    return Promise.all(promises)
+  .then((data) => {
+    getData(data);
+    return data
   })
-  .catch((err) => console.log("ERROR", err));
+  .catch((err) => console.log("ERROR", err))};
 
 function getData(promises) {
   promises.forEach((element) => {
     dataArray.push(element);
   });
-  console.log(dataArray)
   return dataArray;
 }
 
@@ -53,5 +60,11 @@ export const addUserRecipesToAPI = (currentUser, currentRecipe)=> {
     return response.json()
   }
 })
-.catch(err => console.log(err))
+.catch(err => {
+  if (err.status === 422) {
+    console.log('this is already a favorite')
+  } else {
+    console.log(err)
+  }
+})
 }

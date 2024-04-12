@@ -1,4 +1,4 @@
-import { getDataArray, addUserRecipe, addUserRecipesToAPI } from "./apiCalls";
+import { getDataArray, addUserRecipe, addUserRecipesToAPI, getAllData } from "./apiCalls";
 import {
   filterRecipeTag,
   findRecipeIngredients,
@@ -24,21 +24,36 @@ const searchButton = document.getElementById("search-button");
 const favsButton = document.getElementById("favs-button");
 const searchButtonTag = document.getElementById("search-button-for-tags-view");
 const currentUser = document.querySelector(".current-user");
-const data = getDataArray();
+// const data = getDataArray();
+
 const backButton = document.getElementById("back-button");
 const backButton2 = document.getElementById("back-button2");
+let data;
 
 //<><>event listeners<><>
 document.addEventListener("DOMContentLoaded", function () {
-  setTimeout(() => {
+  getAllData()
+  .then(apiData => {
+    data = apiData;
     let user = data[0].users;
-    // console.log(data)
+    let recipes = data[2].recipes
     hideElements([landingPage]);
     let randomUser = getRandomUser(user);
     dataModel.currentUser = randomUser;
-    console.log('curUser', dataModel.currentUser)
+    dataModel.currentRecipes = recipes
+    randomUser.recipesToCook = getSavedApiRecipes(randomUser, recipes)
     showElements([mainPage]);
-  }, 1500);
+  })
+
+  // setTimeout(() => {
+  //   let user = data[0].users;
+  //   // console.log(data)
+  //   hideElements([landingPage]);
+  //   let randomUser = getRandomUser(user);
+  //   dataModel.currentUser = randomUser;
+  //   console.log('curUser', dataModel.currentUser)
+  //   showElements([mainPage]);
+  // }, 1500);
 });
 
 searchMain.addEventListener("click", (event) => {
@@ -72,9 +87,9 @@ recipeView.addEventListener("click", (event) => {
     addRecipeToCook(dataModel.currentRecipe, dataModel.currentUser);
     addUserRecipesToAPI(dataModel.currentUser, dataModel.currentRecipe)
     .then(resp => {
-      console.log('resp', resp)
       faveButton.innerText = resp.message
     })
+    .catch(err => console.log('err', err.message))
   }
 });
 
@@ -117,7 +132,7 @@ favsButton.addEventListener("click", () => {
 
 backButton.addEventListener("click", () => {
   hideElements([navBarTags, searchField, backButton, searchMain, recipeView, backButton2]);
-  showElements([searchButtonTag, navBar, defaultMain]);
+  showElements([searchButtonTag, navBar, defaultMain, favsButton]);
 });
 
 backButton2.addEventListener("click", () => {
@@ -210,4 +225,16 @@ function getRandomUser(users) {
   dataModel.currentUser = randomUser;
   currentUser.innerHTML = randomUser.name + "!";
   return randomUser;
+}
+
+function getSavedApiRecipes(user, recipes) {
+  const foundRecipes = user.recipesToCook.reduce((newRecipes, id) => {
+    const allRecipes = recipes.forEach((recipe) => {
+        if (id === recipe.id) {
+          newRecipes.push(recipe)
+        }
+    })  
+    return newRecipes          
+  }, [])
+  return foundRecipes
 }
