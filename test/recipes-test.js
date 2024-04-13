@@ -97,4 +97,16 @@ describe("currencyConversion", () => {
     const costInCD = getCurrencyConversion(canadianDollar, totalCostInUsd);
     expect(costInCD).to.equal(1312.38)
   })
+  it.skip("should take in another currency, and return the cost for that currency ");
+  const recipe = recipes[0];
+    const ingredientList = [
+      ingredients[0],
+      ingredients[1],
+      ingredients[2],
+      ingredients[3],
+    ];
+    const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
+    const euros = currencies[2];
+    const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
+    expect(costInEuros).to.equal(893.94)
 })
