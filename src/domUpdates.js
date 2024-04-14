@@ -24,6 +24,7 @@ const searchButton = document.getElementById("search-button");
 const favsButton = document.getElementById("favs-button");
 const searchButtonTag = document.getElementById("search-button-for-tags-view");
 const currentUser = document.querySelector(".current-user");
+const costData = document.querySelector(".cost")
 // const data = getDataArray();
 
 const backButton = document.getElementById("back-button");
@@ -56,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dataModel.currentRecipes = recipes
     randomUser.recipesToCook = getSavedApiRecipes(randomUser, recipes)
     showElements([mainPage]);
+    hideElements([costData])
   })
 
   // setTimeout(() => {
@@ -140,17 +142,17 @@ favsButton.addEventListener("click", () => {
   updateRecipeDataModel(favorites);
   favorites = renderSearchResults(favorites);
   populateSearchResults(favorites);
-  hideElements([defaultMain, recipeView, favsButton]);
+  hideElements([defaultMain, recipeView, favsButton,costData]);
   showElements([searchMain, backButton2]);
 });
 
 backButton.addEventListener("click", () => {
-  hideElements([navBarTags, searchField, backButton, searchMain, recipeView, backButton2]);
+  hideElements([navBarTags, searchField, backButton, searchMain, recipeView, backButton2, costData]);
   showElements([searchButtonTag, navBar, defaultMain, favsButton]);
 });
 
 backButton2.addEventListener("click", () => {
-  hideElements([navBarTags, searchField, backButton2, searchMain, recipeView]);
+  hideElements([navBarTags, searchField, backButton2, searchMain, recipeView, costData]);
   showElements([searchButtonTag, navBar, defaultMain, favsButton]);
 });
 
@@ -175,7 +177,7 @@ function selectSearchResult(recipeElement){
   dataModel.currentRecipe = dataModel.currentRecipes[recipeElement];
   renderRecipePage(dataModel.currentRecipes[recipeElement], ingredientList);
   hideElements([searchMain]);
-  showElements([recipeView]);
+  showElements([recipeView, costData]);
 }
 function hideElements(elementArray) {
   elementArray.forEach((element) => {

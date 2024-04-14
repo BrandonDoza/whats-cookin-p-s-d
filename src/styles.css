@@ -240,3 +240,8 @@ li {
   align-self: center;
   width: 200px;
 }
+
+#currency-cost{
+  background-color: var(--liver-containers);
+  color: var(--coral-buttons);
+}
