@@ -30,8 +30,6 @@ const currentUser = document.querySelector(".current-user");
 const costData = document.querySelector(".cost")
 const costAmount = document.querySelector('.amount')
 const selectedCurrency = document.getElementById('currency-cost')
-// const data = getDataArray();
-
 const backButton = document.getElementById("back-button");
 const clickTimer = {
   setup(recipeElement){
@@ -64,16 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
     showElements([mainPage]);
     hideElements([costData])
   })
-
-  // setTimeout(() => {
-  //   let user = data[0].users;
-  //   // console.log(data)
-  //   hideElements([landingPage]);
-  //   let randomUser = getRandomUser(user);
-  //   dataModel.currentUser = randomUser;
-  //   console.log('curUser', dataModel.currentUser)
-  //   showElements([mainPage]);
-  // }, 1500);
 });
 
 searchMain.addEventListener("click", (event) => {
@@ -86,7 +74,6 @@ searchMain.addEventListener("click", (event) => {
 selectedCurrency.addEventListener("change", ()=>{
   renderCost()
 })
-
 
 tagSection.addEventListener("click", (event) => {
   const tag = event.target;
@@ -172,7 +159,6 @@ searchMain.addEventListener("dblclick", (event) => {
     let faveRecipes = dataModel.currentUser.recipesToCook
     let user = dataModel.currentUser
     const element = event.target.closest('div')
-    console.log(element)
     if (element){
       element.remove();
       removeRecipeToCook(faveRecipes, user)
@@ -234,10 +220,10 @@ function renderFilterTags(search) {
     return tag;
   });
   return toPrint;
-}
+};
+
 function renderCost(){
   let currency = findCurrency(selectedCurrency.value, currencies)
-  console.log(currency)
   costAmount.innerText = getCurrencyConversion(currency, dataModel.currentRecipeCost)
 };
 
@@ -247,7 +233,6 @@ function renderRecipePage(recipe, ingredientList) {
   let ingredientsString = "";
   let ingredientsStrings = findRecipeIngredients(recipe, ingredientList);
   dataModel.currentRecipeCost = estimatedCostInCents(recipe, ingredientsStrings)
-  console.log(dataModel.currentRecipeCost)
   renderCost()
   ingredientsStrings.forEach((ingredient, i) => {
     ingredientsString += `
