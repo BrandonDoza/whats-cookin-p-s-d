@@ -5,8 +5,11 @@ import {
   getRecipeInstructions,
   getTagsFromData,
   filterRecipeName,
+  estimatedCostInCents,
+  getCurrencyConversion,
+  findCurrency
 } from "./recipes";
-import { dataModel, updateRecipeDataModel } from "./scripts";
+import { currencies, dataModel, updateRecipeDataModel } from "./scripts";
 import { addRecipeToCook, removeRecipeToCook } from "./users";
 
 //<><>query selectors<><>
@@ -25,6 +28,8 @@ const favsButton = document.getElementById("favs-button");
 const searchButtonTag = document.getElementById("search-button-for-tags-view");
 const currentUser = document.querySelector(".current-user");
 const costData = document.querySelector(".cost")
+const costAmount = document.querySelector('.amount')
+const selectedCurrency = document.getElementById('currency-cost')
 // const data = getDataArray();
 
 const backButton = document.getElementById("back-button");
@@ -226,11 +231,20 @@ function renderFilterTags(search) {
   });
   return toPrint;
 }
+function renderCost(){
+  let currency = findCurrency(selectedCurrency.value, currencies)
+  console.log(currency)
+  costAmount.innerText = getCurrencyConversion(currency, dataModel.currentRecipeCost)
+};
 
 function renderRecipePage(recipe, ingredientList) {
+
   recipeView.innerHTML = "";
   let ingredientsString = "";
   let ingredientsStrings = findRecipeIngredients(recipe, ingredientList);
+  dataModel.currentRecipeCost = estimatedCostInCents(recipe, ingredientsStrings)
+  console.log(dataModel.currentRecipeCost)
+  renderCost()
   ingredientsStrings.forEach((ingredient, i) => {
     ingredientsString += `
       <li>${ingredient.name}: ${recipe["ingredients"][i].quantity.amount} ${recipe["ingredients"][i].quantity.unit}</li>`;

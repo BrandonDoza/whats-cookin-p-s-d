@@ -62,7 +62,12 @@ const filterRecipeName = (name, recipeData) => {
   });
   return findRecipe;
 };
-
+function findCurrency(currencyName, currencies){
+ let match = currencies.find((currency)=>{
+  return currency.name === currencyName
+ });
+ return match
+}
 function getCurrencyConversion(currency, costinUSDCents){
   if (!currency || !costinUSDCents){
     return 'Error: missing parameter'
@@ -81,5 +86,6 @@ export {
   filterRecipeTag,
   findRecipeIngredients,
   getTagsFromData,
-  getCurrencyConversion
+  getCurrencyConversion,
+  findCurrency
 };

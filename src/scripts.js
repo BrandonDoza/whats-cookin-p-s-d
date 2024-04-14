@@ -12,6 +12,7 @@ export var dataModel = {
   currentRecipes: [],
   currentUser: {},
   currentRecipe: {},
+  currentRecipeCost: 0,
 };
 
 export function updateRecipeDataModel(searchResult) {
