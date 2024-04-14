@@ -24,11 +24,11 @@ export const currencies = [
   {name: 'CAD', conversionRate: 1.38},
   {name: 'GBP', conversionRate: 0.80},
   {name: 'CAD', conversionRate: 0.94},
-  {name: 'swedishKrona', conversionRate: 10.88},
-  {name: 'japaneseYen', conversionRate: 153.28},
-  {name: 'chineseYuan', conversionRate: 7.24},
-  {name: 'australianDollar', conversionRate: 1.54},
-  {name: 'indianRupee', conversionRate: 83.61},
-  {name: 'hatianGourde', conversionRate: 132.27},
+  {name: 'SEK', conversionRate: 10.88},
+  {name: 'JPY', conversionRate: 153.28},
+  {name: 'CNY', conversionRate: 7.24},
+  {name: 'AUD', conversionRate: 1.54},
+  {name: 'INR', conversionRate: 83.61},
+  {name: 'HTG', conversionRate: 132.27},
 ];
 
