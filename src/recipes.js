@@ -64,6 +64,9 @@ const filterRecipeName = (name, recipeData) => {
 };
 
 function getCurrencyConversion(currency, costinUSDCents){
+  if (!currency || !costinUSDCents){
+    return 'Error: missing parameter'
+  }
   const fractionalCurrencyUnit = costinUSDCents * currency.conversionRate
   const wholeCurrencyUnit = Math.trunc(fractionalCurrencyUnit)/100
   return wholeCurrencyUnit
