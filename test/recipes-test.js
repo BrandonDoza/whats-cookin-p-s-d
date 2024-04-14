@@ -8,7 +8,7 @@ import {
   filterRecipeName,
   estimatedCostInCents,
 } from "../src/recipes";
-import { ingredients, recipes } from "./mock-data";
+import { ingredients, recipes, currencies } from "./mock-data";
 
 describe("getRecipeData", () => {
   it("Should return a array of objects indentical  to the referenced data", () => {
@@ -82,3 +82,31 @@ describe("Recipe", () => {
     expect(ingredientsByName).to.deep.equal(ingredientList);
   });
 });
+
+describe("currencyConversion", () => {
+  it.skip("Should take in a recipe and a currency, and return the cost of said recipe converted from US Dollar to inpu currency", () => {
+    const recipe = recipes[0];
+    const ingredientList = [
+      ingredients[0],
+      ingredients[1],
+      ingredients[2],
+      ingredients[3],
+    ];
+    const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
+    const canadianDollar = currencies[0];
+    const costInCD = getCurrencyConversion(canadianDollar, totalCostInUsd);
+    expect(costInCD).to.equal(1312.38)
+  })
+  it.skip("should take in another currency, and return the cost for that currency ");
+  const recipe = recipes[0];
+    const ingredientList = [
+      ingredients[0],
+      ingredients[1],
+      ingredients[2],
+      ingredients[3],
+    ];
+    const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
+    const euros = currencies[2];
+    const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
+    expect(costInEuros).to.equal(893.94)
+})
