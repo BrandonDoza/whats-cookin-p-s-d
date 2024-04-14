@@ -83,6 +83,10 @@ searchMain.addEventListener("click", (event) => {
   }
 });
 
+selectedCurrency.addEventListener("change", ()=>{
+  renderCost()
+})
+
 
 tagSection.addEventListener("click", (event) => {
   const tag = event.target;
