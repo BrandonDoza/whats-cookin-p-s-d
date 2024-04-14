@@ -238,14 +238,13 @@ export const users = [
 ];
 
 export const currencies = [
-  {name: canadianDollar, conversionRate: 1.38},
-  {name: britishPound, conversionRate: 0.80},
-  {name: euro, conversionRate: 0.94},
-  {name: swedishKrona, conversionRate: 10.88},
-  {name: japaneseYen, conversionRate: 153.28},
-  {name: chineseYuan, conversionRate: 7.24},
-  {name: australianDollar, conversionRate: 1.54},
-  {name: indianRupee, conversionRate: 83.61},
-  {name: hatianGourde, conversionRate: 132.27},
-]
-
+  {name: 'canadianDollar', conversionRate: 1.38},
+  {name: 'britishPound', conversionRate: 0.80},
+  {name: 'euro', conversionRate: 0.94},
+  {name: 'swedishKrona', conversionRate: 10.88},
+  {name: 'japaneseYen', conversionRate: 153.28},
+  {name: 'chineseYuan', conversionRate: 7.24},
+  {name: 'australianDollar', conversionRate: 1.54},
+  {name: 'indianRupee', conversionRate: 83.61},
+  {name: 'hatianGourde', conversionRate: 132.27},
+];
