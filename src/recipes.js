@@ -63,6 +63,12 @@ const filterRecipeName = (name, recipeData) => {
   return findRecipe;
 };
 
+function getCurrencyConversion(currency, costinUSDCents){
+  const fractionalCurrencyUnit = costinUSDCents * currency.conversionRate
+  const wholeCurrencyUnit = Math.trunc(fractionalCurrencyUnit)/100
+  return wholeCurrencyUnit
+};
+
 export {
   getRecipeData,
   getIngredientsData,
@@ -72,4 +78,5 @@ export {
   filterRecipeTag,
   findRecipeIngredients,
   getTagsFromData,
+  getCurrencyConversion
 };

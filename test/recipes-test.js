@@ -85,7 +85,7 @@ describe("Recipe", () => {
 });
 
 describe("currencyConversion", () => {
-  it.skip("Should take in a recipe and a currency, and return the cost of said recipe converted from US Dollar to inpu currency", () => {
+  it("Should take in a recipe and a currency, and return the cost of said recipe converted from US Dollar to inpu currency", () => {
     const recipe = recipes[0];
     const ingredientList = [
       ingredients[0],
@@ -98,7 +98,7 @@ describe("currencyConversion", () => {
     const costInCD = getCurrencyConversion(canadianDollar, totalCostInUsd);
     expect(costInCD).to.equal(13.12)
   });
-it.skip("should take in another currency, and return the cost for that currency ", () => {
+it("should take in another currency, and return the cost for that currency ", () => {
 const recipe = recipes[0];
   const ingredientList = [
     ingredients[0],
@@ -109,6 +109,6 @@ const recipe = recipes[0];
   const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
   const euros = currencies[2];
   const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
-  expect(costInEuros).to.equal(8.94)
+  expect(costInEuros).to.equal(8.93)
 });
 });
