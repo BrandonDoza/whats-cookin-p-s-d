@@ -3,13 +3,12 @@
 The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
 
 ## Installation and Set Up Instructions:
-1. Clone down the repsository into your preferred directory.
-`git clone` using SSH `git clone git@github.com:BrandonDoza/whats-cookin-p-s-d.git`
-2. Change into the directory.`cd whats-cookinbg-p-s-d`
-3. Install dependencies by running `npm install` in your terminal
-4. run `npm install` in your terminal
-5. run `npm start` in your terminal
-6. Navigate to http://localhost:8080/ in you browser
+1. Clone down the repsository into your preferred directory using SSH `git clone git@github.com:BrandonDoza/whats-cookin-p-s-d.git`
+2. Clone the back end repository using SSH `git clone git@github.com:BrandonDoza/whats-cookin-p-s-d.git` (full repository link: https://github.com/turingschool-examples/whats-cookin-api)
+3. Change into the directory.`cd whats-cookinbg-p-s-d`
+4. Install dependencies by running `npm install` in your terminal
+6. run `npm start` in your terminal
+7. Navigate to http://localhost:8080/ in you browser
 
 ** Do not run `npm audit fix --force`, as this will update to an incompatible version of web-pack. **
 
@@ -37,4 +36,12 @@ The learning goals of this project was for us as learning Developers to utilize 
 - Win 1: Really leaning into the knowledge we have gained throughout out time at Turing to complete this project.
 - Win 2: Learning a lot about our fellow teammates, everyones individual ideas, and how to come together to accomplish our goal.  
 - Win 3: Our time management was laid out very well from the beginning, and allowed us extra time in the end to fix bugs and refactor our code. 
-- Challenges: Minor breakdowns in communication that led to small interruptions in work flow. Adhering to our assigned tasks and letting each person contribute evenly. 
+- Challenges: Minor breakdowns in communication that led to small interruptions in work flow. Adhering to our assigned tasks and letting each person contribute evenly.
+
+## Part 2 questions:
+- How was the new feature handled?
+  - We discussed several approaches as a group and after deciding on one created an issue with its component tasks and divided them amongst the group. The feature was displaying and converting currencies on the recipe page.
+- What was done to address accessibility?
+  - To address accessibility we used a number of automated auditing tools like WAVE and Lighthouse, as well as notes made during our usability tests.
+- How usability testing was implemented?
+  - We received feedback on clarity of how to do certain things like delete recipes and accessibility, both of which were easy enough fixed that we just took care of them quickly on a branch labeled with addressing those comments.
