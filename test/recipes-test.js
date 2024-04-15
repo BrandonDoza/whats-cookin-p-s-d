@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import {
+  getCurrencyConversion,
   findRecipeIngredients,
   getRecipeData,
   getIngredientsData,
@@ -84,7 +85,7 @@ describe("Recipe", () => {
 });
 
 describe("currencyConversion", () => {
-  it.skip("Should take in a recipe and a currency, and return the cost of said recipe converted from US Dollar to inpu currency", () => {
+  it("Should take in a recipe and a currency, and return the cost of said recipe converted from US Dollar to inpu currency", () => {
     const recipe = recipes[0];
     const ingredientList = [
       ingredients[0],
@@ -95,18 +96,33 @@ describe("currencyConversion", () => {
     const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
     const canadianDollar = currencies[0];
     const costInCD = getCurrencyConversion(canadianDollar, totalCostInUsd);
-    expect(costInCD).to.equal(1312.38)
-  })
-  it.skip("should take in another currency, and return the cost for that currency ");
+    expect(costInCD).to.equal(13.12)
+  });
+it("should take in another currency, and return the cost for that currency ", () => {
+const recipe = recipes[0];
+  const ingredientList = [
+    ingredients[0],
+    ingredients[1],
+    ingredients[2],
+    ingredients[3],
+  ];
+  const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
+  const euros = currencies[2];
+  const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
+  expect(costInEuros).to.equal(8.93)
+
+});
+it('Should return an error message if a paremeter is left undefined', () =>{
   const recipe = recipes[0];
-    const ingredientList = [
-      ingredients[0],
-      ingredients[1],
-      ingredients[2],
-      ingredients[3],
-    ];
-    const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
-    const euros = currencies[2];
-    const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
-    expect(costInEuros).to.equal(893.94)
-})
+  const ingredientList = [
+    ingredients[0],
+    ingredients[1],
+    ingredients[2],
+    ingredients[3],
+  ];
+  const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
+  const euros = currencies[89];
+  const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
+  expect(costInEuros).to.equal('Error: missing parameter')
+});  
+});

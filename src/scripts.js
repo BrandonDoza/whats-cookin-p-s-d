@@ -12,9 +12,23 @@ export var dataModel = {
   currentRecipes: [],
   currentUser: {},
   currentRecipe: {},
+  currentRecipeCost: 0,
 };
 
 export function updateRecipeDataModel(searchResult) {
   dataModel.currentRecipes = searchResult;
 }
+
+export const currencies = [
+  {name: 'USD', conversionRate: 1.00},
+  {name: 'CAD', conversionRate: 1.38},
+  {name: 'GBP', conversionRate: 0.80},
+  {name: 'CAD', conversionRate: 0.94},
+  {name: 'SEK', conversionRate: 10.88},
+  {name: 'JPY', conversionRate: 153.28},
+  {name: 'CNY', conversionRate: 7.24},
+  {name: 'AUD', conversionRate: 1.54},
+  {name: 'INR', conversionRate: 83.61},
+  {name: 'HTG', conversionRate: 132.27},
+];
 

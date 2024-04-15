@@ -5,8 +5,11 @@ import {
   getRecipeInstructions,
   getTagsFromData,
   filterRecipeName,
+  estimatedCostInCents,
+  getCurrencyConversion,
+  findCurrency
 } from "./recipes";
-import { dataModel, updateRecipeDataModel } from "./scripts";
+import { currencies, dataModel, updateRecipeDataModel } from "./scripts";
 import { addRecipeToCook, removeRecipeToCook } from "./users";
 
 //<><>query selectors<><>
@@ -25,8 +28,8 @@ const favsButton = document.getElementById("favs-button");
 const searchButtonTag = document.getElementById("search-button-for-tags-view");
 const currentUser = document.querySelector(".current-user");
 const costData = document.querySelector(".cost")
-// const data = getDataArray();
-
+const costAmount = document.querySelector('.amount')
+const selectedCurrency = document.getElementById('currency-cost')
 const backButton = document.getElementById("back-button");
 const clickTimer = {
   setup(recipeElement){
@@ -59,16 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
     showElements([mainPage]);
     hideElements([costData])
   })
-
-  // setTimeout(() => {
-  //   let user = data[0].users;
-  //   // console.log(data)
-  //   hideElements([landingPage]);
-  //   let randomUser = getRandomUser(user);
-  //   dataModel.currentUser = randomUser;
-  //   console.log('curUser', dataModel.currentUser)
-  //   showElements([mainPage]);
-  // }, 1500);
 });
 
 searchMain.addEventListener("click", (event) => {
@@ -78,6 +71,9 @@ searchMain.addEventListener("click", (event) => {
   }
 });
 
+selectedCurrency.addEventListener("change", ()=>{
+  renderCost()
+})
 
 tagSection.addEventListener("click", (event) => {
   const tag = event.target;
@@ -163,7 +159,6 @@ searchMain.addEventListener("dblclick", (event) => {
     let faveRecipes = dataModel.currentUser.recipesToCook
     let user = dataModel.currentUser
     const element = event.target.closest('div')
-    console.log(element)
     if (element){
       element.remove();
       removeRecipeToCook(faveRecipes, user)
@@ -225,12 +220,20 @@ function renderFilterTags(search) {
     return tag;
   });
   return toPrint;
-}
+};
+
+function renderCost(){
+  let currency = findCurrency(selectedCurrency.value, currencies)
+  costAmount.innerText = getCurrencyConversion(currency, dataModel.currentRecipeCost)
+};
 
 function renderRecipePage(recipe, ingredientList) {
+
   recipeView.innerHTML = "";
   let ingredientsString = "";
   let ingredientsStrings = findRecipeIngredients(recipe, ingredientList);
+  dataModel.currentRecipeCost = estimatedCostInCents(recipe, ingredientsStrings)
+  renderCost()
   ingredientsStrings.forEach((ingredient, i) => {
     ingredientsString += `
       <li>${ingredient.name}: ${recipe["ingredients"][i].quantity.amount} ${recipe["ingredients"][i].quantity.unit}</li>`;
