@@ -25,7 +25,6 @@ const navBarTags = document.querySelector(".after-tag-click-sidebar-display");
 const defaultMain = document.querySelector(".after-load-main-view");
 const searchMain = document.querySelector(".after-tag-search-view");
 const recipeView = document.querySelector(".recipe-view");
-const recipesDisplay = document.querySelector(".recipes-display");
 const searchField = document.querySelector(".search-input");
 const tagSection = document.querySelector(".tags-section");
 const searchButton = document.getElementById("search-button");
@@ -80,7 +79,18 @@ const recipeElement = event.target.parentElement.id;
  if (event.key == 'Enter'){
   clickTimer.setup(recipeElement);
  }
+ if (event.key == "\\" && searchMain.classList.contains('favorites')){
+  clickTimer.clear();
+  let faveRecipes = dataModel.currentUser.recipesToCook;
+  let user = dataModel.currentUser;
+  const element = event.target.closest("div");
+  if (element) {
+    element.remove();
+    removeRecipeToCook(faveRecipes, user);
+  };
+  };
 });
+
 
 selectedCurrency.addEventListener("change", () => {
   renderCost();
@@ -217,7 +227,7 @@ function populateSearchResults(searchResults) {
     searchMain.innerHTML += result;
   });
   if (searchMain.classList.contains('favorites')){
-    searchMain.innerHTML+= '<h2>Double-click recipes to delete from favorites.</h2>'
+    searchMain.innerHTML+= "<h2>Double-click or hit '\\' key to delete recipe from favorites.</h2>"
   }
 }
 
