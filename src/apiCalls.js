@@ -19,12 +19,6 @@ const promises = [users(), ingredients(), recipes()];
 
 let dataArray = [];
 
-// Promise.all(promises)
-//   .then((promises) => {
-//     getData(promises);
-//   })
-//   .catch((err) => console.log("ERROR", err));
-
   export function getAllData() {
     return Promise.all(promises)
   .then((data) => {

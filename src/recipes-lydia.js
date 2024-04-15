@@ -9,7 +9,6 @@ const filterRecipeTag = (tag, recipeData) => {
     acc = recipes;
     return acc;
   }, {});
-  console.log(filteredRecipes);
   return filteredRecipes;
 };
 

@@ -18,6 +18,7 @@ describe("creating a user", () => {
     });
   });
 });
+
 describe("add recipe", () => {
   let user;
   beforeEach(() => {
