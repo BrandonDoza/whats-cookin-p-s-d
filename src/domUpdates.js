@@ -84,7 +84,7 @@ tagSection.addEventListener("click", (event) => {
     updateRecipeDataModel(searchResult);
     searchResult = renderSearchResults(searchResult);
     populateSearchResults(searchResult);
-    hideElements([defaultMain, recipeView]);
+    hideElements([defaultMain, recipeView, costData]);
     showElements([searchMain]);
   }
 });
