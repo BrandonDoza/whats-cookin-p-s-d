@@ -96,33 +96,32 @@ describe("currencyConversion", () => {
     const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
     const canadianDollar = currencies[0];
     const costInCD = getCurrencyConversion(canadianDollar, totalCostInUsd);
-    expect(costInCD).to.equal(13.12)
+    expect(costInCD).to.equal(13.12);
   });
-it("should take in another currency, and return the cost for that currency ", () => {
-const recipe = recipes[0];
-  const ingredientList = [
-    ingredients[0],
-    ingredients[1],
-    ingredients[2],
-    ingredients[3],
-  ];
-  const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
-  const euros = currencies[2];
-  const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
-  expect(costInEuros).to.equal(8.93)
-
-});
-it('Should return an error message if a paremeter is left undefined', () =>{
-  const recipe = recipes[0];
-  const ingredientList = [
-    ingredients[0],
-    ingredients[1],
-    ingredients[2],
-    ingredients[3],
-  ];
-  const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
-  const euros = currencies[89];
-  const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
-  expect(costInEuros).to.equal('Error: missing parameter')
-});  
+  it("should take in another currency, and return the cost for that currency ", () => {
+    const recipe = recipes[0];
+    const ingredientList = [
+      ingredients[0],
+      ingredients[1],
+      ingredients[2],
+      ingredients[3],
+    ];
+    const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
+    const euros = currencies[2];
+    const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
+    expect(costInEuros).to.equal(8.93);
+  });
+  it("Should return an error message if a paremeter is left undefined", () => {
+    const recipe = recipes[0];
+    const ingredientList = [
+      ingredients[0],
+      ingredients[1],
+      ingredients[2],
+      ingredients[3],
+    ];
+    const totalCostInUsd = estimatedCostInCents(recipe, ingredientList);
+    const euros = currencies[89];
+    const costInEuros = getCurrencyConversion(euros, totalCostInUsd);
+    expect(costInEuros).to.equal("Error: missing parameter");
+  });
 });

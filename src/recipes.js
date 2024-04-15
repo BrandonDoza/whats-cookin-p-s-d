@@ -62,20 +62,22 @@ const filterRecipeName = (name, recipeData) => {
   });
   return findRecipe;
 };
-function findCurrency(currencyName, currencies){
- let match = currencies.find((currency)=>{
-  return currency.name === currencyName
- });
- return match
+
+function findCurrency(currencyName, currencies) {
+  let match = currencies.find((currency) => {
+    return currency.name === currencyName;
+  });
+  return match;
 }
-function getCurrencyConversion(currency, costinUSDCents){
-  if (!currency || !costinUSDCents){
-    return 'Error: missing parameter'
+
+function getCurrencyConversion(currency, costinUSDCents) {
+  if (!currency || !costinUSDCents) {
+    return "Error: missing parameter";
   }
-  const fractionalCurrencyUnit = costinUSDCents * currency.conversionRate
-  const wholeCurrencyUnit = Math.trunc(fractionalCurrencyUnit)/100
-  return wholeCurrencyUnit
-};
+  const fractionalCurrencyUnit = costinUSDCents * currency.conversionRate;
+  const wholeCurrencyUnit = Math.trunc(fractionalCurrencyUnit) / 100;
+  return wholeCurrencyUnit;
+}
 
 export {
   getRecipeData,
@@ -87,5 +89,5 @@ export {
   findRecipeIngredients,
   getTagsFromData,
   getCurrencyConversion,
-  findCurrency
+  findCurrency,
 };
