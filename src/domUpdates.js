@@ -25,7 +25,6 @@ const navBarTags = document.querySelector(".after-tag-click-sidebar-display");
 const defaultMain = document.querySelector(".after-load-main-view");
 const searchMain = document.querySelector(".after-tag-search-view");
 const recipeView = document.querySelector(".recipe-view");
-const recipesDisplay = document.querySelector(".recipes-display");
 const searchField = document.querySelector(".search-input");
 const tagSection = document.querySelector(".tags-section");
 const searchButton = document.getElementById("search-button");
@@ -74,6 +73,24 @@ searchMain.addEventListener("click", (event) => {
     clickTimer.setup(recipeElement);
   }
 });
+
+searchMain.addEventListener("keypress", (event)=>{
+const recipeElement = event.target.parentElement.id;
+ if (event.key == 'Enter'){
+  clickTimer.setup(recipeElement);
+ }
+ if (event.key == "\\" && searchMain.classList.contains('favorites')){
+  clickTimer.clear();
+  let faveRecipes = dataModel.currentUser.recipesToCook;
+  let user = dataModel.currentUser;
+  const element = event.target.closest("div");
+  if (element) {
+    element.remove();
+    removeRecipeToCook(faveRecipes, user);
+  };
+  };
+});
+
 
 selectedCurrency.addEventListener("change", () => {
   renderCost();
@@ -209,12 +226,15 @@ function populateSearchResults(searchResults) {
   searchResults.forEach((result) => {
     searchMain.innerHTML += result;
   });
+  if (searchMain.classList.contains('favorites')){
+    searchMain.innerHTML+= "<h2>Double-click or hit '\\' key to delete recipe from favorites.</h2>"
+  }
 }
 
 function renderSearchResults(recipes) {
   let toPrint = recipes.map((recipe, i) => {
     recipe = `<div id = ${i}>
-            <img src="${recipe.image}" alt="${recipe.name}" />
+            <img tabindex='0' src="${recipe.image}" alt="${recipe.name}" />
             <p>${recipe.name}</p>
       </div>`;
     return recipe;
