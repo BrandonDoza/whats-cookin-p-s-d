@@ -5,7 +5,7 @@ The details of this project are outlined in the <a href="https://frontend.turing
 ## Installation and Set Up Instructions:
 1. Clone down the repsository into your preferred directory using SSH `git clone git@github.com:BrandonDoza/whats-cookin-p-s-d.git`
 2. Clone the back end repository using SSH `git clone git@github.com:BrandonDoza/whats-cookin-p-s-d.git` (full repository link: https://github.com/turingschool-examples/whats-cookin-api)
-3. Change into the directory.`cd whats-cookinbg-p-s-d`
+3. Change into the directory `cd whats-cookinbg-p-s-d`
 4. Install dependencies by running `npm install` in your terminal
 6. run `npm start` in your terminal
 7. Navigate to http://localhost:8080/ in you browser
@@ -19,7 +19,7 @@ In the terminal run `npm test`
 
 ## App Preview:
 
-<img src="https://imgur.com/9RrSySo.png" alt="preview">
+<img src="https://i.imgur.com/OyHc6Bt.png" alt="preview">
 
 ## Context:
 The basis of this project was to build a web application that allows users to search, view, and save recipes to cook. Based on the users experience, the user can add recipes to their favorites on a click and remove them on a double click. This project was a a two week project that was space out 2 weeks apart 2 months into our coding journey at Turing. Total project time was approximately 40 hours.
