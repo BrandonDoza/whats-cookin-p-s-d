@@ -75,6 +75,13 @@ searchMain.addEventListener("click", (event) => {
   }
 });
 
+searchMain.addEventListener("keypress", (event)=>{
+const recipeElement = event.target.parentElement.id;
+ if (event.key == 'Enter'){
+  clickTimer.setup(recipeElement);
+ }
+});
+
 selectedCurrency.addEventListener("change", () => {
   renderCost();
 });
@@ -209,12 +216,15 @@ function populateSearchResults(searchResults) {
   searchResults.forEach((result) => {
     searchMain.innerHTML += result;
   });
+  if (searchMain.classList.contains('favorites')){
+    searchMain.innerHTML+= '<h2>Double-click recipes to delete from favorites.</h2>'
+  }
 }
 
 function renderSearchResults(recipes) {
   let toPrint = recipes.map((recipe, i) => {
     recipe = `<div id = ${i}>
-            <img src="${recipe.image}" alt="${recipe.name}" />
+            <img tabindex='0' src="${recipe.image}" alt="${recipe.name}" />
             <p>${recipe.name}</p>
       </div>`;
     return recipe;
